@@ -1,4 +1,4 @@
 $(document).ready(function () {
-	alert("button.popup");
-	alert(Button.popup);
+	var num = {'name': 'initialize', 'info': 'test info'};
+	opera.extension.postMessage(num);
 });

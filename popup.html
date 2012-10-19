@@ -1,9 +1,138 @@
-<html lang="en">
-  <head>
-  	<title>WizNote Webclipper for Opera</title>
-  	<script type="text/javascript" src="content/libs/common/Core/jQuery/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="content/libs/entity/popupEntity.js"></script>
-  </head>
-  <body>
-  </body>
+<!--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+-->
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> -->
+<html>
+	<head>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="popup html for wiz clip">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<script type="text/javascript" src="content/libs/common/Core/Debug/Debug.js"></script>
+		
+		<script type="text/javascript" src="content/libs/common/Core/jQuery/jquery-1.7.2.min.js"></script>
+
+	    <script type="text/javascript" src="content/libs/common/Core/Wiz/Wiz.js"></script>
+	    <script type="text/javascript" src="content/libs/common/Core/Wiz/WizConstant.js"></script>
+	    <script type="text/javascript" src="content/libs/common/Core/Wiz/WizObject.js"></script>
+
+		<script type="text/javascript" src="content/libs/common/Core/zTree/jquery.ztree.core-3.3.min.js"></script>
+		<script type="text/javascript" src="content/libs/common/Core/zTree/ZtreeController.js"></script>
+
+
+		<script type="text/javascript" src="content/libs/entity/popupEntity.js"></script>
+		<link rel="stylesheet" type="text/css" href="content/style/popup.css" />
+		<link rel="stylesheet" type="text/css" href="content/style/zTreeStyle.css" />
+	</head>
+	<body class="popup" id="popup">
+		<!-- head -->
+		<div class="header">
+			<div class="header_logo">
+				<img alt="Wiz" src="images/logo.png">
+			</div>
+			<div id="header_user" class="header-links" style="display: block; ">
+				<div id="login_div">
+					<span id="logout_control" tabindex="100">注销</span>
+					<span id="header_username">(waste1985@163.com)</span>
+				</div>
+				<div id="loginoff_div">
+					<span id="create_acount"></span>
+				</div>
+			</div>
+		</div>
+		<div class="waiting" id="waiting" style="display: none;">
+			<div id="waiting_div" style="display: none;">
+				<br>
+				<label id="waiting-label">等待页面...</label>
+				<br>
+				<progress indeterminate=""></progress>
+			</div>
+			<div class="required_error" id="errorpage_tip" style="display: none;">
+				<br>
+				<label></label>
+			</div>
+		</div>
+		
+		<div>
+			
+		</div>
+		<div class="wiz_login" id="wiz_login" style="display: none;">
+			<div class="container">
+				<div class="account_login_div">
+					<div id="div_error_validator" style="color:red"></div>
+					<div>
+						<label id="user_id_tip" for="user_id">账号: </label>
+						<input type="text" name="user_id" size="30" value="" id="user_id">
+						<div>
+							<label id="userid_error_tip" class="required_error" style="display: none;"></label>
+						</div>
+					</div>
+					<div>
+						<label id="password_tip">密码: </label>
+						<input type="password" name="password" size="30" value="" id="password">
+						<div>
+							<label id="password_error_tip" class="required_error" style="display: none;"></label>
+						</div>
+					</div>
+					<div class="keep_password_div">
+						<input type="checkbox" name="keep_password" id="keep_passoword">
+						<font id="keep_password_tip">记住密码</font>
+					</div>
+					<div>
+						<button id="login_button" name="login_button" class="btn btn-primary">&nbsp;   登录   &nbsp;</button>
+						<div style="vertical-align: baseline; height:24px; padding-top:1px; display:inline;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wiz_clip_detail" id="wiz_clip_detail" style="">
+			<div class="container">
+				<div action="#" class="note_info">
+					<div class="note_title_div radius-top">
+						<label for="wiz_note_title" id="note_title_tip">标题: </label>
+						<span>
+							<input type="text" id="wiz_note_title">
+						</span>
+					</div>
+					<div class="note_category_div">
+						<label for="note-category" id="category_tip">文件夹: </label>
+						<span>
+							<label id="category_info" class="category_info" location="/My Notes/">/我的笔记/</label>
+						</span>
+						<div id="ztree_container" class="ztree-container" style="display: none;">
+						</div>
+						<div id="category_loading" class="category_loading" style="display: none;">
+							<img src="css/zTreeStyle/img/loading.gif"><label id="category_loading"></label>
+						</div>
+					</div>
+					<div class="note_comment_div radius-bottom">
+						<label for="note-comment" id="comment_tip">评论: </label>
+						<textarea rows="1" class="comment-info" id="comment-info" placeholder="添加评论"></textarea>
+					</div>
+				</div>
+				<div>
+					<div class="native-checkd">
+						<select id="save_type_sel" class="save-type">
+							<option id="save_to_server">保存到云端(服务器)</option>
+							<option id="save_to_native">保存到本地</option>
+						</select>
+					</div>
+					<div class="submit-group">
+						<button id="note_submit" class="btn btn-primary submit-button">保存文章</button>
+						<select id="submit-type" class="btn btn-primary submit-type">
+							<option id="article">保存文章</option>
+							<option id="selection" disabled="disabled">保存选择</option>
+							<option id="fullPage">保存整页</option>
+							<option id="url">保存URL</option>
+							<option id="native">更多</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

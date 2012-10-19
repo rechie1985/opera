@@ -11,6 +11,7 @@
                 var ToolbarUIItemProperties = {
                     title: "Webclipper for Opera",
                     icon: "toolbar18x18.png",
+                    disabel: true,
                     popup: {
                         href: "popup.html",
                         width: 1100,
@@ -19,6 +20,7 @@
                 }
                 theButton = opera.contexts.toolbar.createItem(ToolbarUIItemProperties);
                 opera.contexts.toolbar.addItem(theButton);
+                return theButton;
             };
             this.addContextMenuButton = function(title, cliclHandler) {
                 // Check the Context Menu API is supported
@@ -28,16 +30,6 @@
                     var itemProps = {
                         title: title,//'Privatize',
                         onclick: cliclHandler
-                        // function(event) {
-                        //     // Create a tab properties object
-                        //     var tabProps = {
-                        //         url: event.pageURL,
-                        //         private: true
-                        //     };
-
-                        //     // Create a tab with the specified properties
-                        //     var tab = opera.extension.tabs.create(tabProps);
-                        // }
                     }
 
                     // Create a menu item with the specified properties
