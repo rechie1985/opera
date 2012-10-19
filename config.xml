@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.wiz.cn/webclipper-opera" version="1.0.0">
+	<name>Webclipper For Opera</name>
+	<description>The extension “Wiz Note” can help you to save the web content or the whole website in your own account.</description>
+  	<author href="http://www.wiz.cn" email="support@wiz.cn">Wiz Note</author>
+  	<icon src="icons/64x64logo.png"/>
+    <feature name="opera:contextmenus"/>
+</widget>
