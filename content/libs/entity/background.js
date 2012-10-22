@@ -16,11 +16,6 @@
     }
 
     function contextMenuClickHandler(event) {
-        console.log("Wiz.toolbarButton");
-        ShowObjProperty(Wiz.toolbarButton.popup);
-
-        console.log("event");
-        ShowObjProperty(event)
         //test  request originating tab to preview
         event.source.postMessage({'message': 'preview'});
     }
