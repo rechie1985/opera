@@ -41,6 +41,6 @@ Wiz.StorageManager.prototype.get = function (key, bSession) {
 	} catch (err) {
 		console.error('Wiz.StorageManager.get() Error: ' + err);
 	}
-	return value;
+	return storageValue;
 };
 

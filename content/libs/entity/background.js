@@ -1,33 +1,43 @@
-(function (window) {
-    'use strict';
-    if (window.Wiz) {
-        var Wiz = window.Wiz;
-    } else {
-        console.error('could not find Wiz object');
+'use strict';
+var CONTEXTMENU_NAME = 'save to wiznote';
+
+if ( !Wiz ) {
+    console.error('could not find Wiz object');
+}
+var toolbarButton;
+
+function contextMenuClickHandler(event) {
+    //test  request originating tab to preview
+    event.source.postMessage({'message': 'preview'});
+}
+
+
+
+function wiz_initialize_background () {
+    //获取保存在localstorage中的user信息
+    var userId = Wiz.storageManager.get(Wiz.Constant.Default.STORAGE_USERID);
+    var authority = Wiz.storageManager.get(Wiz.Constant.Default.AUTHORITY);
+
+    console.log('authority: ' + authority);
+    if ( authority !== null) {
+        Wiz.context.userId = userId;
+        Wiz.context.authority = authority;
     }
-    var toolbarButton;
+}
+
+function messageHandler(event) {
+    var data = event.data;
+    var requestName = data.name;
 
 
+    ShowObjProperty(event);
+}
 
-    var CONTEXTMENU_NAME = 'save to wiznote';
-    function onLoadHandler() {
-        toolbarButton = Wiz.opera.addToolbarButton();
-        Wiz.opera.addContextMenuButton(CONTEXTMENU_NAME, contextMenuClickHandler);
-    }
+function onLoadHandler() {
+    toolbarButton = Wiz.opera.addToolbarButton();
+    Wiz.opera.addContextMenuButton(CONTEXTMENU_NAME, contextMenuClickHandler);
+}
 
-    function contextMenuClickHandler(event) {
-        //test  request originating tab to preview
-        event.source.postMessage({'message': 'preview'});
-    }
-
-    opera.extension.onmessage = function(event) {
-        console.log(JSON.stringify(event.data));
-        console.log('onmessage');
-        ShowObjProperty(event);
-    };
-
-
-    window.addEventListener("load", onLoadHandler, false);
-
-})(window);
-
+window.addEventListener("load", onLoadHandler, false);
+opera.extension.onmessage = messageHandler;
+wiz_initialize_background();

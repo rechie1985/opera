@@ -53,7 +53,7 @@ Wiz.Context.prototype.getAuthority = function () {
 
 Wiz.Context.prototype.setAuthority = function (authority) {
 	if (typeof authority !== 'string') {
-		console.error('TypeError: Wiz.Context.setLoginParams() loginParams is not a string object');
+		console.error('TypeError: Wiz.Context.setLoginParams() authority is not a string object');
 		return;;
 	}
 	this._authority = authority;

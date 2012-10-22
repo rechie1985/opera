@@ -43,6 +43,10 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 				if (rememberMe === true) {
 					Wiz.storageManager.set(Wiz.Default.AUTHORITY, Wiz.context.authority, false);
 					Wiz.storageManager.set(Wiz.Default.STORAGE_USERID, username, false);
+				} else {
+					//如果用户点击rememberMe，则使用sessionStorage来保存
+					Wiz.storageManager.set(Wiz.Default.AUTHORITY, Wiz.context.authority, true);
+					Wiz.storageManager.set(Wiz.Default.STORAGE_USERID, username, true);
 				}
 				callSuccess(respJson);
 			} catch (err) {

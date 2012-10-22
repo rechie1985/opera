@@ -16,11 +16,15 @@
 
 	    <script type="text/javascript" src="content/libs/common/Core/Wiz/Wiz.js"></script>
 	    <script type="text/javascript" src="content/libs/common/Core/Wiz/WizConstant.js"></script>
+    	<script type="text/javascript" src="content/libs/common/Core/Wiz/Context.js"></script>
 	    <script type="text/javascript" src="content/libs/common/Core/Wiz/WizObject.js"></script>
 
 		<script type="text/javascript" src="content/libs/common/Core/zTree/jquery.ztree.core-3.3.min.js"></script>
 		<script type="text/javascript" src="content/libs/common/Core/zTree/ZtreeController.js"></script>
 
+		<script type="text/javascript" src="content/libs/common/Opera/Popup/PopupView.js"></script>
+		<script type="text/javascript" src="content/libs/common/Opera/Popup/LoginControl.js"></script>
+		<script type="text/javascript" src="content/libs/common/Opera/Popup/ClipPageControl.js"></script>
 
 		<script type="text/javascript" src="content/libs/entity/popupEntity.js"></script>
 		<link rel="stylesheet" type="text/css" href="content/style/popup.css" />
@@ -32,18 +36,18 @@
 			<div class="header_logo">
 				<img alt="Wiz" src="images/logo.png">
 			</div>
-			<div id="header_user" class="header-links" style="display: block; ">
+			<div id="header_user" class="header-links" style="display: none; ">
 				<div id="login_div">
 					<span id="logout_control" tabindex="100">注销</span>
-					<span id="header_username">(waste1985@163.com)</span>
+					<span id="header_username"></span>
 				</div>
 				<div id="loginoff_div">
-					<span id="create_acount"></span>
+					<span id="create_acount">创建为知账号</span>
 				</div>
 			</div>
 		</div>
-		<div class="waiting" id="waiting" style="display: none;">
-			<div id="waiting_div" style="display: none;">
+		<div class="waiting" id="waiting">
+			<div id="waiting_div">
 				<br>
 				<label id="waiting-label">等待页面...</label>
 				<br>
@@ -87,7 +91,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="wiz_clip_detail" id="wiz_clip_detail" style="">
+		<div class="wiz_clip_detail" id="wiz_clip_detail" style="display: none;">
 			<div class="container">
 				<div action="#" class="note_info">
 					<div class="note_title_div radius-top">
