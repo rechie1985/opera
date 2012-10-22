@@ -9,15 +9,12 @@ html, body {
 
 input, textarea, select, button {
 	margin: 0;
-	font: -webkit-small-control;
-	color: initial;
 	letter-spacing: normal;
 	word-spacing: normal;
 	text-transform: none;
 	text-indent: 0px;
 	text-shadow: none;
 	display: inline-block;
-	text-align: -webkit-auto;
 }
 
 /*隐藏聚焦时显示的黄色边框*/
@@ -36,9 +33,7 @@ body.popup {
 	margin: 5px;
 	min-height: 10px;
 	-webkit-border-radius: 4px;
-	-webkit-user-select: none;
 	width: 500px;
-	overflow: hidden;
 }
 
 .waiting {
@@ -137,11 +132,9 @@ body.popup {
 	margin-left: -60px;
 	height: 28px;
 	z-index: 200;
-	-webkit-appearance: button;
 	overflow: hidden;
 	outline: none;
 	text-indent: -500px;
-	oveflow: hidden;
 }
 
 .submit-type option {
@@ -161,14 +154,10 @@ body.popup {
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 	vertical-align: middle;
 	background-color: #f5f5f5;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
 	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
 	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 	border: 1px solid #cccccc;
 	border-bottom-color: #b3b3b3;
 	-webkit-border-bottom-left-radius: 12px;
@@ -183,10 +172,7 @@ body.popup {
 	background-color: #e6e6e6;
 }
 .btn:active, .btn.active {
-	background-color: #cccccc \9;
-}
-.btn:first-child {
-	*margin-left: 0;
+	background-color: #cccccc;
 }
 .btn:hover {
 	color: #333333;
@@ -208,7 +194,7 @@ body.popup {
 	-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 	background-color: #e6e6e6;
-	background-color: #d9d9d9 \9;
+	background-color: #d9d9d9;
 	outline: none;
 }
 
@@ -221,20 +207,16 @@ body.popup {
 }
 .btn-primary {
 	background-color: #0074cc;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0055cc));
-	background-image: -webkit-linear-gradient(top, #0088cc, #0055cc);
-	background-image: linear-gradient(top, #0088cc, #0055cc);
+	background-image: -o-linear-gradient(top, #0088cc, #0055cc);
 	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
 	border-color: #0055cc #0055cc #003580;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
 	background-color: #0055cc;
 }
 .btn-primary:active, .btn-primary.active {
-	background-color: #004099 \9;
+	background-color: #004099;
 }
 
 .submit-button {
