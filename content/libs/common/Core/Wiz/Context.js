@@ -7,14 +7,14 @@ Wiz.Context = function () {
 	this.__defineGetter__('token', this.setToken);
 	this.__defineSetter__('userId', this.getUserId);
 	this.__defineGetter__('userId', this.setUserId);
-	this.__defineSetter__('loginParams', this.getLoginParams);
-	this.__defineGetter__('token', this.setLoginParams);
+	this.__defineSetter__('authority', this.getAuthority);
+	this.__defineGetter__('authority', this.setAuthority);
 
 };
 
 Wiz.Context.prototype._token = '';
 Wiz.Context.prototype._userId = '';
-Wiz.Context.prototype._loginParams = '';
+Wiz.Context.prototype._authority = '';//userid + '*' + md5.password
 
 Wiz.Context.prototype.getToken = function () {
 	//不能返回null，xmlrpc会报错
@@ -44,17 +44,17 @@ Wiz.Context.prototype.setUserId = function (userId) {
 	this._userId = userId;
 };
 
-Wiz.Context.prototype.getLoginParams = function () {
-	if (this._loginParams === '') {
+Wiz.Context.prototype.getAuthority = function () {
+	if (this._authority === '') {
 		return null;
 	}
-	return this._loginParams;
+	return this._authority;
 };
 
-Wiz.Context.prototype.setLoginParams = function (loginParams) {
-	if (typeof loginParams !== 'string') {
+Wiz.Context.prototype.setAuthority = function (authority) {
+	if (typeof authority !== 'string') {
 		console.error('TypeError: Wiz.Context.setLoginParams() loginParams is not a string object');
 		return;;
 	}
-	this._loginParams = loginParams;
+	this._authority = authority;
 };

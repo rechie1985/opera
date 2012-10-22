@@ -3,11 +3,11 @@ Wiz.Notification = function () {
 	this.__defineGetter__('notifications', this.getNotification);
 };
 
-Wiz.Notification.clippingMsg = Wiz.Message.get('clipResult_clipping');
-Wiz.Notification.syncMsg = Wiz.Message.get('clipResult_sync');
-Wiz.Notification.successMsg = Wiz.Message.get('clipResult_success');
-Wiz.Notification.errorMsg = Wiz.Message.get('clipResult_error');
-Wiz.Notification.retryClipMsg = Wiz.Message.get('retry_clip_button');
+// Wiz.Notification.clippingMsg = Wiz.Message.get('clipResult_clipping');
+// Wiz.Notification.syncMsg = Wiz.Message.get('clipResult_sync');
+// Wiz.Notification.successMsg = Wiz.Message.get('clipResult_success');
+// Wiz.Notification.errorMsg = Wiz.Message.get('clipResult_error');
+// Wiz.Notification.retryClipMsg = Wiz.Message.get('retry_clip_button');
 Wiz.Notification.notificationList = [];
 
 Wiz.Notification.prototype._notifications = null;

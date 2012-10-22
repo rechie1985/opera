@@ -2,7 +2,8 @@ if (typeof Wiz === 'undefined') {
 	'use strict';
 	var Wiz = {
 		_notification: null,
-		_context: null
+		_context: null,
+		_storageManager: null
 	};
 
 	Wiz.getNotification = function () {
@@ -20,12 +21,19 @@ if (typeof Wiz === 'undefined') {
 	};
 
 	Wiz.setContext = function (context) {
-		if (context typeof Wiz.Context) {
+		if (context instanceof Wiz.Context) {
 			this._context = context;
 		}
-	}	
+	};
+	Wiz.getStorageManager = function () {
+		if (this._storageManager === null) {
+			this._storageManager = new Wiz.StorageManager();
+		}
+		return this._storageManager;
+	};
 
 }
 Wiz.__defineGetter__('notification', Wiz.getNotification);
 Wiz.__defineGetter__('context', Wiz.getContext);
-WIz.__defineSetter__('context', Wiz.setContext);
+Wiz.__defineSetter__('context', Wiz.setContext);
+Wiz.__defineGetter__('storageManager', Wiz.getStorageManager);

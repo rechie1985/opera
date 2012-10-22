@@ -9,14 +9,15 @@ Wiz.Constant = {
 		AUTH_COOKIE: 'wiznote_auth',
 		XMLURL : 'http://service.wiz.cn/wizkm/xmlrpc',
 		COOKIEURL : 'http://service.wiz.cn/web',
-		COOKIENAME : 'wiz-clip-auth',
+		AUTHORITY : 'wiz-clip-auth',
+		STORAGE_USERID: 'wiz-clip-userid',
 		COOKIE_CATEGORY: 'wiz-all-category',
 		COOKIE_CATEGORY_TIME: 'wiz-category-stored-time',
 		PREVIEW_OVER_TIME_MS: 5000						//30秒超时
 	},
 
 	LOGIN_PARAMS: {
-		CLIENT_TYPE: 'webclip_maxthon3',
+		CLIENT_TYPE: 'webclip_opera',
 		API_VERSION: 3
 	},
 
@@ -27,10 +28,5 @@ Wiz.Constant = {
 		GET_AllCATEGORIES: 'category.getAll',
 		GET_ALLTAGS: 'tag.getList',
 		DOCUMENT_POSTSIMPLE: 'document.postSimpleData'
-	},
-	ListenType : {
-		SERVICE: 'wiz_service',
-		CONTENT: 'wiz_content',
-		POPUP: 'wiz_popup'
 	}
 }
