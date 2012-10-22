@@ -134,7 +134,6 @@ body.popup {
 	z-index: 200;
 	overflow: hidden;
 	outline: none;
-	text-indent: -500px;
 }
 
 .submit-type option {
