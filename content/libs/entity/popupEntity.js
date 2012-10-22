@@ -3,6 +3,8 @@ $(document).ready(function () {
 	try {
 		var bgProcess = opera.extension.bgProcess;
 		var bgWiz = bgProcess.Wiz;
+		var loginCtrl = new LoginControl();
+		var clipPageCtrl = new ClipPageControl();
 	} catch (err) {
 		console.error('popupPage opera.extension.bgProcess Errpr: ' + err);
 	}

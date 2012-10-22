@@ -26,11 +26,18 @@
  * given a single JS Object representing the server's response.
  */
 var xmlrpc = function(server, method, params, callback, callErr, callFinal) {
+
+    var sending = xmlrpc.writeCall(method, params);
+    ajax(server, sending, callback, callErr, callFinal);
+};
+
+var ajax = function(server, sending, callback, callErr, callFinal) {
     if (callErr == null)
         callErr = alert;
-	var request = window.XMLHttpRequest ? new XMLHttpRequest()
+    var request = window.XMLHttpRequest ? new XMLHttpRequest()
         : new ActiveXObject("MSXML2.XMLHTTP.3.0");
     request.open("POST", server, true);
+    request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     request.onreadystatechange = function() {
         if (request.readyState != 4)
             return; // TODO: callbacks?
@@ -43,44 +50,40 @@ var xmlrpc = function(server, method, params, callback, callErr, callFinal) {
 
                 var ret = null;
                 try {
-                    console.log(request);
                     if (request.responseXML) {
                         ret = xmlrpc.parseResponse(request.responseXML);
-                    console.log(ret);}
-                    else
-                        throw "bad xml: '" + request.responseText + "'";
+                    }
+                    else{
+                        callErr(request.responseText);
+                        throw request.responseText;
+                    }
                 } catch (err) {
-                    console.log(request);
                     err.message = "xmlrpc: " + err.message;
                     callErr(err);
                     throw err;
                 }
 
-                //调用callback不用xmlrpc来捕获异常，否则会调用成功后还调用callError
-                //如果上层代码写的有问题，会造成死循环
-                // try {
-                //     console.log('ok');
-                callback(ret);
-                // } catch (err) {
-                //     err.message = "callback: " + err.message;
-                //     callErr(err);
-                //     throw err;
-                // }
+                try {
+                    callback(ret);
+                } catch (err) {
+                    err.message = "callback: " + err.message;
+                    callErr(err);
+                    throw err;
+                }
             } finally {
                 if (callFinal)
                     callFinal();
             }
         }
-        catch (err) {
+        catch (err) {                        
+            callErr(err);
         }
     };
-
-    var sending = xmlrpc.writeCall(method, params);
-    console.log(sending);
     request.send(sending);
-};
+}
 
 xmlrpc.writeCall = function(method, params) {
+    console.log(params);
     out = "<?xml version=\"1.0\"?>\n";
     out += "<methodCall>\n";
     out += "<methodName>"+ method + "</methodName>\n";
@@ -96,6 +99,7 @@ xmlrpc.writeCall = function(method, params) {
     }
 
     out += "</methodCall>\n";
+    console.log(out);
     return out;
 };
 
@@ -158,12 +162,12 @@ xmlrpc.writeParam = function(param) {
 };
 
 xmlrpc.createXml = function(str) {
-	if(document.all) {
-		var xmlDom = new ActiveXObject("Microsoft.XMLDOM");
-		xmlDom.loadXML(str);
-		return xmlDom;
-	} else 
-		return new DOMParser().parseFromString(str, "text/xml");
+    if(document.all) {
+        var xmlDom = new ActiveXObject("Microsoft.XMLDOM");
+        xmlDom.loadXML(str);
+        return xmlDom;
+    } else 
+        return new DOMParser().parseFromString(str, "text/xml");
 }
 
 xmlrpc.parseResponse = function(dom) {
@@ -197,7 +201,7 @@ xmlrpc.parse = function(value) {
     var type = value.childNodes[0];
     if (type == null)
     //lsl 2012.8.10 value为空的时候，直接返回，不抛错误
-    	return "";
+        return "";
         // throw "parser: expected <value> to have a child";
     switch (type.nodeName) {
         case "boolean":

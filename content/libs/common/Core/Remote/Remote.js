@@ -48,12 +48,12 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 					Wiz.storageManager.set(Wiz.Default.AUTHORITY, Wiz.context.authority, true);
 					Wiz.storageManager.set(Wiz.Default.STORAGE_USERID, username, true);
 				}
-				callSuccess(respJson);
+				callSuccess();
 			} catch (err) {
 				console.error('Wiz.Remote.clientLogin callbackSuccess Error: ' + err);
 			}
 		},
-			callError = callError || function(){};
+			callError = callError || function(error){console.log('Wiz.Remote.clientLogin() callError: ' + error)};
 
 		xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_LOGIN, [postParams], success, callError);
 	} catch (err) {
@@ -63,11 +63,19 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 
 Wiz.Remote.prototype.getAllCategory = function (callSuccess, callError) {
 	try {
+		var success = function (resp) {
+			if (200 == resp.return_code) {
+				ShowObjProperty(resp);
+				console.log(resp.categories);
+			} else {
+				console.error(resp.return_message);
+			}
+		};
 		var token = Wiz.context.token;
 		if (token !== null) {
 			var postParams = Wiz.Remote.getPostObj();
 			postParams.token = token;
-			xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.GET_AllCATEGORIES, [postParams], callSuccess, callError);
+			xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.GET_AllCATEGORIES, [postParams], success, callError);
 		}	
 	} catch (err) {
 		console.error('Wiz.Remote.getAllCategory() Error : ' + err);

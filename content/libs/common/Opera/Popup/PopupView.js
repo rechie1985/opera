@@ -75,5 +75,8 @@ var PopupView = {
 	},
 	initPopupPage : function () {
 		PopupView.showCreateAccountDiv();
+	},
+	setTitle : function (title) {
+		$('#wiz_note_title').val(title);
 	}
 };

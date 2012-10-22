@@ -15,8 +15,8 @@ function contextMenuClickHandler(event) {
 
 function wiz_initialize_background () {
     //获取保存在localstorage中的user信息
-    var userId = Wiz.storageManager.get(Wiz.Constant.Default.STORAGE_USERID);
-    var authority = Wiz.storageManager.get(Wiz.Constant.Default.AUTHORITY);
+    var userId = Wiz.storageManager.get(Wiz.Default.STORAGE_USERID);
+    var authority = Wiz.storageManager.get(Wiz.Default.AUTHORITY);
     if ( authority !== null) {
         Wiz.context.userId = userId;
         Wiz.context.authority = authority;
@@ -26,9 +26,22 @@ function wiz_initialize_background () {
 function messageHandler(event) {
     var data = event.data;
     var requestName = data.name;
+    var info = data.info;
+    switch (requestName) {
+    case 'login' :
+        Wiz.remote.clientLogin(info.user_id, info.password, info.rememberMe, Wiz.remote.getAllCategory);
+        break;
+    case 'getCategory':
+        bg_getCategory();
+        break;
+    case 'saveDocument':
+        
+        break;
+    }
+}
 
+function bg_getCategory() {
 
-    ShowObjProperty(event);
 }
 
 function onLoadHandler() {
