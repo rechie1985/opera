@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 	function wiz_popup_initialize() {
 		if (bgWiz.context.authority !== null) {
-			opera.extension.poseMessage({'name': 'getCategory', 'from': 'popup'});
+			opera.extension. postMessage({'name': 'getCategory', 'from': 'popup'});
 		} else {
 			PopupView.showLogin();
 		}

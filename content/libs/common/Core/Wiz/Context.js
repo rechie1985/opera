@@ -3,12 +3,12 @@
  */
 'use strict';
 Wiz.Context = function () {
-	this.__defineSetter__('token', this.getToken);
-	this.__defineGetter__('token', this.setToken);
-	this.__defineSetter__('userId', this.getUserId);
-	this.__defineGetter__('userId', this.setUserId);
-	this.__defineSetter__('authority', this.getAuthority);
-	this.__defineGetter__('authority', this.setAuthority);
+	this.__defineGetter__('token', this.getToken);
+	this.__defineSetter__('token', this.setToken);
+	this.__defineGetter__('userId', this.getUserId);
+	this.__defineSetter__('userId', this.setUserId);
+	this.__defineGetter__('authority', this.getAuthority);
+	this.__defineSetter__('authority', this.setAuthority);
 
 };
 
@@ -53,7 +53,7 @@ Wiz.Context.prototype.getAuthority = function () {
 
 Wiz.Context.prototype.setAuthority = function (authority) {
 	if (typeof authority !== 'string') {
-		console.error('TypeError: Wiz.Context.setLoginParams() authority is not a string object');
+		console.error('TypeError: Wiz.Context.setAuthority() authority is not a string object');
 		return;;
 	}
 	this._authority = authority;

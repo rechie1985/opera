@@ -17,8 +17,6 @@ function wiz_initialize_background () {
     //获取保存在localstorage中的user信息
     var userId = Wiz.storageManager.get(Wiz.Constant.Default.STORAGE_USERID);
     var authority = Wiz.storageManager.get(Wiz.Constant.Default.AUTHORITY);
-
-    console.log('authority: ' + authority);
     if ( authority !== null) {
         Wiz.context.userId = userId;
         Wiz.context.authority = authority;
