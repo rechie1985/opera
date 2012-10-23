@@ -58,7 +58,7 @@ var Base64 = {
 }
 
 
-var ClientClipper = function () {
+var ClientClipper = function ($) {
 	var SAVE_CONTENT = 'save_content',
 		SAVE_FULLPAGE = 'save_all',
 		SAVE_SELECTION = 'save_sel',
@@ -419,4 +419,4 @@ var ClientClipper = function () {
 	this.launchNativeClipper = launchNativeClipper;
 }
 
-var wiz_clipper = new ClientClipper();
+var wiz_clipper = new ClientClipper(window.jQuery);
