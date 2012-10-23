@@ -1,7 +1,7 @@
 /**
  * @author rechie
  */
-// 'use strict';
+'use strict';
 var ztreeControl = new ZtreeController();
 function LoginControl(bgProcess) {
 

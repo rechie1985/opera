@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 var PopupView = {
 	changeSubmitDisplayByType : function () {
 		var type = $('#submit-type').val();

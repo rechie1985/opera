@@ -1,5 +1,5 @@
 (function(window) {
-
+    'use strict';
     // if (typeof window.Wiz === 'undefined') {
     //     window.Wiz = {};
     //     console.error('could not find Wiz object');

@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 Wiz.Notification = function () {
 	this.__defineGetter__('notifications', this.getNotification);
 };
