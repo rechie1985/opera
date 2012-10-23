@@ -1,6 +1,6 @@
 function Wiz_ContentPreview() {
 	"use strict";
-
+	var Node = window.Node;
 	var contentVeil = new Wiz_ContentVeil();
 
 	// Stores a reference to the last element that we used as a preview.
@@ -78,7 +78,7 @@ function Wiz_ContentPreview() {
 
 
 	function setElementStyle(elem, styles) {
-		if ( !(elem instanceof Element) ) {
+		if ( !(elem instanceof window.Element) ) {
         	return;
   	  	}
 	    var style = elem.style;
@@ -749,5 +749,5 @@ function Wiz_ContentPreview() {
 
 	Object.preventExtensions(this);
 }
-var wiz_contentPreview = new Wiz_ContentPreview();
+var wiz_contentPreview = new Wiz_ContentPreview(window);
 

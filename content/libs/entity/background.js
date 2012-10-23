@@ -62,7 +62,7 @@ function popup_request_initialize() {
 
 function requestPreview (previewOp) {
     if (!previewOp) {
-        previewOp = 'article';
+        previewOp = 'url';
     }
     opera.extension.broadcastMessage({'name': 'preview', 'op': previewOp});
 }

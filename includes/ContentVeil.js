@@ -93,8 +93,8 @@ function Wiz_ContentVeil() {
 
 		// Save this info.
 		currentlyShownRect = rect;
-		currentRectOffsetTop = document.body.scrollTop;
-		currentRectOffsetLeft = document.body.scrollLeft;
+		currentRectOffsetTop = document.documentElement.scrollTop;
+		currentRectOffsetLeft = document.documentElement.scrollLeft;
 		currentlyStatic = staticView;
 
 		// We expand the rectangle for two reasons.
@@ -216,9 +216,10 @@ function Wiz_ContentVeil() {
 				height : currentlyShownRect.height
 			};
 
-			var vert = document.body.scrollTop - currentRectOffsetTop;
-			var horiz = document.body.scrollLeft - currentRectOffsetLeft;
-
+			var vert = document.documentElement.scrollTop - currentRectOffsetTop;
+			var horiz = document.documentElement.scrollLeft - currentRectOffsetLeft;
+			console.log('vert: ' + vert + '---' + 'horiz: ' + horiz);
+			console.log(document);
 			if (!vert && !horiz) {
 				return;
 			}
