@@ -72,6 +72,7 @@ function getCategory() {
 function contextMenuClickHandler(event) {
     event.source.postMessage({'message': 'preview'});
 }
+
 function onLoadHandler() {
     toolbarButton = Wiz.opera.addToolbarButton();
     Wiz.opera.addContextMenuButton(CONTEXTMENU_NAME, contextMenuClickHandler);

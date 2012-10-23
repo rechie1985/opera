@@ -3,7 +3,7 @@
  */
 // 'use strict';
 var ztreeControl = new ZtreeController();
-function LoginControl() {
+function LoginControl(bgProcess) {
 
 	var isAutoLogin = false;
 	//add click listener to login button
@@ -21,7 +21,7 @@ function LoginControl() {
 		loginParam.password = 'md5.' + hex_md5(password.value);
 		loginParam.rememberMe = keep_passoword.checked;
 		
-		opera.extension.postMessage({'name': 'login', 'info': loginParam});
+		bgProcess.popup_request_login(loginParam);
 	}
 
 	/**
