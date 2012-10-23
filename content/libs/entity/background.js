@@ -62,9 +62,10 @@ function popup_request_initialize() {
 
 function requestPreview (previewOp) {
     if (!previewOp) {
-        previewOp = 'url';
+        previewOp = 'article';
     }
-    opera.extension.broadcastMessage({'name': 'preview', 'op': previewOp});
+
+    opera.extension.broadcastMessage({'name': 'preview', 'op': previewOp, 'url': opera.extension.tabs.getSelected().url});
 }
 
 function popup_request_getCategory() {
