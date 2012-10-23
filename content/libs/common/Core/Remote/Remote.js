@@ -97,10 +97,10 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 				Wiz.notificator.showError(e);
 				console.error('Wiz.Remote.postDocument() Error: ' + e);
 			}
-		},
-			success = function (info) {
-				Wiz.notificator.showClipSuccess(docInfo.title);
-			};
+		};
+		var	success = function (info) {
+			Wiz.notificator.showClipSuccess(docInfo.title);
+		};
 		try {
 			var regexp = /%20/g,
 				title = docInfo.title,

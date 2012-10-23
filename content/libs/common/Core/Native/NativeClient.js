@@ -53,3 +53,14 @@ Wiz.NativeClient.prototype.getCategory = function (userid) {
 	}
 	return category;
 };
+
+Wiz.NativeClient.prototype.saveDocument = function (info) {
+	if (this.isInstalled() === false) {
+		console.error('Save Error: Wiz.NativeClient.saveDocument(). Can not use native clip , because client is not installed.');
+	}
+	try {
+		this.client.Execute(info.params);
+	} catch (err) {
+		console.error('Wiz.NativeClient.saveDocument() Error: ' + err);
+	}
+};
