@@ -52,8 +52,10 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 			} catch (err) {
 				console.error('Wiz.Remote.clientLogin callbackSuccess Error: ' + err);
 			}
-		},
-			callError = callError || function(error){console.log('Wiz.Remote.clientLogin() callError: ' + error)};
+		};
+		var	callError = callError || function(error){
+			console.log('Wiz.Remote.clientLogin() callError: ' + error);
+		};
 
 		xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_LOGIN, [postParams], success, callError);
 	} catch (err) {
@@ -65,9 +67,9 @@ Wiz.Remote.prototype.getAllCategory = function (callSuccess, callError) {
 	try {
 		var success = function (resp) {
 			if (200 == resp.return_code) {
-				ShowObjProperty(resp);
-				console.log(resp.categories);
+				callSuccess(resp.categories);
 			} else {
+				//TODO
 				console.error(resp.return_message);
 			}
 		};
@@ -145,10 +147,12 @@ Wiz.Remote.prototype.loginByCookie = function (authority, callSuccess, callError
 
 Wiz.Remote.prototype.autoLogin = function (callback, callbackParams) {
 	var authority = Wiz.context.authority,
-		success = callback ? this.call(callback, callbackParams) :  function (resp) {},
 		error = function (errorMsg) {
 			//自动登陆错误暂不做错误处理,记录日志
 			console.error('Wiz.Remote.autoLogin() Error: ' + errosMsg);
+		},
+		success = function(resp){
+			callback(callbackParams);
 		};
 	if (authority) {	
 		this.loginByCookie(authority, success, error);

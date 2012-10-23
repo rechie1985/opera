@@ -1,4 +1,4 @@
-function Wiz_PageInfo() {
+function Wiz_PageInfo(Node) {
 	"use strict";
 
 	// This is a map of hostnames (for hostnames that begin with 'www.', the 'www.' will be stripped off first, so don't
@@ -315,5 +315,5 @@ function Wiz_PageInfo() {
 
 Object.preventExtensions(Wiz_PageInfo);
 
-var wiz_pageInfo = new Wiz_PageInfo();
+var wiz_pageInfo = new Wiz_PageInfo(window.Node);
 

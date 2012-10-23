@@ -86,5 +86,8 @@ var PopupView = {
 		} catch (err) {
 			console.error('popupEntity.resize() Error: ' + err);
 		}
+	},
+	close : function () {
+		window.close();
 	}
 };

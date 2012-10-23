@@ -1,10 +1,7 @@
 /**
  * @author rechie
  */
-var cookieUrl = 'http://service.wiz.cn/web',
-	cookieName = 'wiz-clip-auth',
-	cookieExpiredays = 14 * 24 * 60 * 60,
-	updateClientUrl = 'http://www.wiz.cn/wiznote_web_clipper_chrome';
+var updateClientUrl = 'http://www.wiz.cn/wiznote_web_clipper_chrome';
 
 function ClipPageControl(bgProcess) {
 	'use strict';
@@ -21,6 +18,7 @@ function ClipPageControl(bgProcess) {
 		$('#note_submit').click(noteSubmit);
 		$('#comment-info').bind('focus', resizeCommentHeight);
 		$('#wiz_clip_detail').show(initClipPageInfo);
+		$('#category_info').bind('click', changeCategoryLoadingStatus);
 		initNativeDiv();
 	}
 
@@ -255,19 +253,6 @@ function ClipPageControl(bgProcess) {
 	 */
 
 	function requestCategory() {
-		$('#category_info').bind('click', changeCategoryLoadingStatus);
-		//本地目录信息错误，向后台请求目录信息
-		// var port = chrome.extension.connect({
-		// 	name: 'requestCategory'
-		// });
-		// port.onMessage.addListener(function (msg) {
-		// 	//错误处理
-		// 	if (msg && typeof msg === 'string'){
-		// 		var value = $('#wiz_note_category').val();
-		// 		localStorage['category'] = msg;
-		// 		parseWizCategory(msg);
-		// 	}
-		// });
 	}
 
 

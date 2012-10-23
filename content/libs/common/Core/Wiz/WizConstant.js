@@ -12,6 +12,7 @@ Wiz.Default = {
 	STORAGE_USERID: 'wiz-clip-userid',
 	COOKIE_CATEGORY: 'wiz-all-category',
 	COOKIE_CATEGORY_TIME: 'wiz-category-stored-time',
+	CATEGORY_EXPIRE_SEC: 10 * 60,
 	PREVIEW_OVER_TIME_MS: 5000						//30秒超时
 };
 

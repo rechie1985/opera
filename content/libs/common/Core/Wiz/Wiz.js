@@ -5,7 +5,8 @@ if (typeof Wiz === 'undefined') {
 		_context: null,
 		_storageManager: null,
 		_remote: null,
-		_native: null
+		_native: null,
+		_background: null
 	};
 	Wiz.XMLRPC_URL = 'http://service.wiz.cn/wizkm/xmlrpc';
 
@@ -46,6 +47,12 @@ if (typeof Wiz === 'undefined') {
 		}
 		return this._native;
 	};
+	Wiz.getBackground = function () {
+		if (this._background === null) {
+			this._background = new Wiz.OperaBackground();
+		}
+		return this._background;
+	};
 }
 Wiz.__defineGetter__('notification', Wiz.getNotification);
 Wiz.__defineGetter__('context', Wiz.getContext);
@@ -53,3 +60,4 @@ Wiz.__defineSetter__('context', Wiz.setContext);
 Wiz.__defineGetter__('storageManager', Wiz.getStorageManager);
 Wiz.__defineGetter__('remote', Wiz.getRemote);
 Wiz.__defineGetter__('native', Wiz.getNative);
+Wiz.__defineGetter__('background', Wiz.getBackground);

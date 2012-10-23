@@ -11,6 +11,7 @@ var handlers = {
     'saveDocument': saveDocument,
 };
 
+
 /**
  * 初始化保存的user信息，方便popup页面调用
  * TODO：读取option页面信息
@@ -39,17 +40,10 @@ function saveDocument(info) {
  * @return {[type]} [description]
  */
 function popup_request_login(info) {
-    Wiz.remote.clientLogin(info.user_id, info.password, info.rememberMe, Wiz.remote.getAllCategory);
+    Wiz.remote.clientLogin(info.user_id, info.password, info.rememberMe, requestPreview);
 }
 
 function messageHandler(event) {
-    ShowObjProperty(toolbarButton);
-    ShowObjProperty(toolbarButton.popup);
-    ShowObjProperty(toolbarButton.popup.window);
-    console.log(toolbarButton.popup.width);
-    console.log(typeof toolbarButton.popup);
-    console.log(toolbarButton.popup.constructor);
-    event.source.close()
     var data = event.data;
     var requestName = data.name;
     var info = data.info;
@@ -58,13 +52,34 @@ function messageHandler(event) {
     }
 }
 
-function popup_request_getCategory() {
-
+/**
+ * popup页面初始化调用方法，需要登陆过
+ * @return {[type]} [description]
+ */
+function popup_request_initialize() {
+    Wiz.remote.autoLogin(requestPreview);
 }
 
-function getCategory() {
-    var nativeCategories = Wiz.native.getCategory();
-    var cacheCategories = background_getCacheCategories();
+function requestPreview (previewOp) {
+    if (!previewOp) {
+        previewOp = 'article';
+    }
+    opera.extension.broadcastMessage({'name': 'preview', 'op': previewOp});
+}
+
+function popup_request_getCategory() {
+    var categories = null;
+    if (Wiz.native.isInstalled()) {
+        categories = Wiz.native.getCategory();
+    } else {
+        categories = Wiz.background.getCacheCategories();
+    }
+    //如果都没有取到，直接向服务器发请求
+    if (categories === null) {
+        Wiz.remote.getCategory(Wiz.background.sendCategoryToPopup);
+        return;
+    }
+    Wiz.background.sendCategoryToPopup(categories);
 }
 
 

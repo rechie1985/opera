@@ -12,13 +12,27 @@ $(document).ready(function () {
 
 	function wiz_popup_initialize() {
 		if (bgWiz.context.authority !== null) {
-			opera.extension. postMessage({'name': 'getCategory', 'from': 'popup'});
+			bgProcess.popup_request_initialize();// opera.extension. postMessage({'name': 'getCategory', 'from': 'popup'});
 		} else {
 			PopupView.showLogin();
 		}
 	}
 
-	
+	var handlers = {
+		'loginSuccess': loginSuccessHandler,
+		'contentVeilShow': clipPageCtrl.initClipPageListener
+			
+	};
+
+	function loginSuccessHandler() {
+		PopupView.showClipPage();
+	}
 
 	wiz_popup_initialize();
+	opera.extension.onmessage = function (event) {
+		var requestName = event.data.name;
+		if (typeof requestName === 'string') {
+			handlers[requestName](event.data.info);
+		}
+	};
 });
