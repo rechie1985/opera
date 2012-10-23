@@ -78,5 +78,13 @@ var PopupView = {
 	},
 	setTitle : function (title) {
 		$('#wiz_note_title').val(title);
+	},
+	resize : function (operaPopupObj, width, height) {
+		try {
+			operaPopupObj.width = width;
+			operaPopupObj.height = height;
+		} catch (err) {
+			console.error('popupEntity.resize() Error: ' + err);
+		}
 	}
 };

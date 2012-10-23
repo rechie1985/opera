@@ -1,10 +1,10 @@
 $(document).ready(function () {
 	//使用bgProcess的Wiz上下文，可以免去一些消息传输的时间
 	try {
-		var bgProcess = opera.extension.bgProcess;
+		var bgProcess = (new Wiz.OperaBgProcess()).process;
+		var loginCtrl = new LoginControl(bgProcess);
+		var clipPageCtrl = new ClipPageControl(bgProcess);
 		var bgWiz = bgProcess.Wiz;
-		var loginCtrl = new LoginControl();
-		var clipPageCtrl = new ClipPageControl();
 	} catch (err) {
 		console.error('popupPage opera.extension.bgProcess Errpr: ' + err);
 	}
@@ -16,6 +16,8 @@ $(document).ready(function () {
 			PopupView.showLogin();
 		}
 	}
+
+	
 
 	wiz_popup_initialize();
 });
