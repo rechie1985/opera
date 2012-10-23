@@ -627,10 +627,11 @@ function Wiz_ContentPreview() {
 	}
 
 	// This handles incoming requests from other extension pages.
-	function messageHandler(request) {
+	function messageHandler(event) {
 		// if (document.URL !== Wiz.maxthon.browser.tabs.getCurrentTab().url) {
 		// 	return ;
 		// }
+		var request = event.data;
 		console.log("Msg Received: " + request.name + " " + request.op);
 		if (!request.name || !request.op || (request.name !== "preview")) {
 			return;
@@ -681,6 +682,12 @@ function Wiz_ContentPreview() {
 			console.warn("Could not found wiz_clipper object!")
 			return ;
 		}
+
+		if (!info) {
+			info = {};
+		}
+		info.url = document.URL;
+
 		completeImgSrc();
 		switch(type) {
 			case "article" :
@@ -729,15 +736,11 @@ function Wiz_ContentPreview() {
 
 
 	// Wiz.Browser.addListener(Wiz.Constant.ListenType.CONTENT, messageHandler);
-	opera.contexts.menu.onclick = function(menuEvent) {
+	// opera.contexts.menu.onclick = function(menuEvent) {
 
 	    // Listen for a message from the background process
-	    opera.extension.addEventListener('message', function(event) {
-	      // Insert message from the event.data object into the source element
-	      	// menuEvent.srcElement.value = event.data.message;
-			wiz_clipper.launchNativeClipper(info);
-	    }, false);
-  	};
+	opera.extension.addEventListener('message', messageHandler, false);
+  	// };
 
 	// Public API:
 	this.getArticleElement = getArticleElement;

@@ -70,7 +70,9 @@ function getCategory() {
 
 
 function contextMenuClickHandler(event) {
-    event.source.postMessage({'message': 'preview'});
+    ShowObjProperty(event);
+    var type = 'native';
+    event.source.postMessage({'name': 'preview', 'op': 'submit', 'type': 'native'});
 }
 
 function onLoadHandler() {

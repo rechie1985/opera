@@ -11,7 +11,6 @@
                 var ToolbarUIItemProperties = {
                     title: "Webclipper for Opera",
                     icon: "toolbar18x18.png",
-                    disabel: true,
                     popup: {
                         href: "popup.html",
                         width: 1100,

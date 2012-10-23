@@ -17,8 +17,8 @@ Wiz.NativeClient.prototype.isInstalled = function() {
 };
 
 Wiz.NativeClient.prototype.getClient = function () {
-	if (!this._nativeClient) {
-		this._nativeClient.get(Wiz.NativeClient.APP_ID);
+	if (this._nativeClient === null) {
+		this._nativeClient = this.get(Wiz.NativeClient.APP_ID);
 	}
 	return this._nativeClient;
 };
