@@ -12,6 +12,7 @@ function ClipPageControl(bgProcess) {
 		_hasNative = bgProcess.Wiz.native.isInstalled();
 
 	function initClipPageListener() {
+		//必须要加判断，否则会多次绑定时间
 		PopupView.hideLogoffDiv();
 		$('body').bind('keyup', keyDownHandler);
 		$('#submit-type').change(changeSubmitTypehandler);
@@ -122,6 +123,8 @@ function ClipPageControl(bgProcess) {
 		} else {
 			//改变页面显示
 			PopupView.changeSubmitDisplayByType();
+			//调用background方法切换预览显示
+			bgProcess.requestPreview(cmd);
 		}
 	}
 
@@ -201,8 +204,8 @@ function ClipPageControl(bgProcess) {
 		if (visible) {
 			PopupView.hideCategoryLoading();
 		} else {
-			// var categoryLoadingMsg = chrome.i18n.getMessage('category_loading');
-			// PopupView.showCategoryLoading(categoryLoadingMsg);
+			var categoryLoadingMsg = 'now loading...';//chrome.i18n.getMessage('category_loading');
+			PopupView.showCategoryLoading(categoryLoadingMsg);
 		}
 	}
 

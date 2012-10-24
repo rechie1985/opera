@@ -2,6 +2,7 @@ $(document).ready(function () {
 	'use strict';
 	//使用bgProcess的Wiz上下文，可以免去一些消息传输的时间
 	try {
+		var bClipPageShowing = false;
 		var bgProcess = (new Wiz.OperaBgProcess()).process;
 		var loginCtrl = new LoginControl(bgProcess);
 		var clipPageCtrl = new ClipPageControl(bgProcess);
@@ -23,9 +24,12 @@ $(document).ready(function () {
 	};
 
 	function showClipPage(info) {
-		PopupView.showClipPage();
-		clipPageCtrl.initSubmitGroup(info);
-		clipPageCtrl.initClipPageListener();
+		if (bClipPageShowing === false) {
+			PopupView.showClipPage();
+			clipPageCtrl.initSubmitGroup(info);
+			clipPageCtrl.initClipPageListener();
+			bClipPageShowing = true;
+		}
 	}
 
 	wiz_popup_initialize();
