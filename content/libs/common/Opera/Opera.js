@@ -13,7 +13,7 @@
                     icon: "toolbar18x18.png",
                     popup: {
                         href: "popup.html",
-                        width: 1100,
+                        width: 520,
                         height: 300
                     }
                 }
