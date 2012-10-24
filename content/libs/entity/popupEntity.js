@@ -19,19 +19,20 @@ $(document).ready(function () {
 	}
 
 	var handlers = {
-		'loginSuccess': loginSuccessHandler,
-		'contentVeilShow': clipPageCtrl.initClipPageListener
-			
+		'showClipPage': showClipPage
 	};
 
-	function loginSuccessHandler() {
+	function showClipPage(info) {
 		PopupView.showClipPage();
+		clipPageCtrl.initSubmitGroup(info);
+		clipPageCtrl.initClipPageListener();
 	}
 
 	wiz_popup_initialize();
 	opera.extension.onmessage = function (event) {
 		var requestName = event.data.name;
-		if (typeof requestName === 'string') {
+		console.log('popup: ' + requestName);
+		if (typeof requestName === 'string' && handlers[requestName]) {
 			handlers[requestName](event.data.info);
 		}
 	};

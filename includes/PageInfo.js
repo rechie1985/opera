@@ -176,16 +176,6 @@ function Wiz_PageInfo(Node) {
 		return article;
 	}
 
-	function messageHandler(request) {
-		var handlers = {
-			"getInfo" : getInfoRequestHandler
-		}
-
-		if (request.name && handlers[request.name]) {
-			handlers[request.name](request);
-		}
-	}
-
 	// Looks for selections in the current document and descendent (i)frames.
 	// Returns the *first* non-empty selection.
 	// @TODO: Clipper.js/Clip.js still use SelectionFinder.js instead of this code. They are the only place in the clipper
@@ -275,7 +265,7 @@ function Wiz_PageInfo(Node) {
 		}
 	}
 
-	function getInfoRequestHandler() {
+	function postPageInfoToBg() {
 		// Initialize these values if they haven't been already.
 		findArticle();
 
@@ -297,6 +287,7 @@ function Wiz_PageInfo(Node) {
 			documentIsFrameset : documentIsFrameset,
 			title  : document.title
 		};
+		opera.extension.postMessage({'name': 'responsePageInfo', 'info': response});
 		//send to popup page 
 		// Wiz.Browser.sendRequest(Wiz.Constant.ListenType.POPUP, {'name': 'responsePageInfo', 'info': response});
 	}
@@ -308,7 +299,7 @@ function Wiz_PageInfo(Node) {
 	this.getDefaultArticle = getDefaultArticle;
 	this.getSelection = getSelection;
 	this.getSelectionFrame = getSelectionFrame;
-	this.getInfoRequestHandler = getInfoRequestHandler;
+	this.postPageInfoToBg = postPageInfoToBg;
 
 	Object.preventExtensions(this);
 }

@@ -91,17 +91,17 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 			try {
 				var respJson = JSON.parse(err);
 				if (respJson.return_code != 200) {
-					Wiz.notificator.showError(respJson.return_message);
+					// Wiz.notificator.showError(respJson.return_message);
 				} else {
-					Wiz.notificator.showClipSuccess(docInfo.title);
+					// Wiz.notificator.showClipSuccess(docInfo.title);
 				}
 			} catch (e) {
-				Wiz.notificator.showError(e);
+				// Wiz.notificator.showError(e);
 				console.error('Wiz.Remote.postDocument() Error: ' + e);
 			}
 		};
 		var	success = function (info) {
-			Wiz.notificator.showClipSuccess(docInfo.title);
+			// Wiz.notificator.showClipSuccess(docInfo.title);
 		};
 		try {
 			var regexp = /%20/g,

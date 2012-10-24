@@ -54,7 +54,7 @@ if (typeof Wiz === 'undefined') {
 		return this._background;
 	};
 }
-Wiz.__defineGetter__('notification', Wiz.getNotification);
+Wiz.__defineGetter__('notificator', Wiz.getNotification);
 Wiz.__defineGetter__('context', Wiz.getContext);
 Wiz.__defineSetter__('context', Wiz.setContext);
 Wiz.__defineGetter__('storageManager', Wiz.getStorageManager);

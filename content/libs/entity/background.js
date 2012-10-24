@@ -9,9 +9,12 @@ var handlers = {
     'login': popup_request_login,
     'getCategory': popup_request_getCategory,
     'saveDocument': saveDocument,
+    'responsePageInfo': content_request_showClipPage
 };
 
-
+function content_request_showClipPage(info) {    
+    opera.extension.broadcastMessage({'name': 'showClipPage', 'info': info});
+}
 /**
  * 初始化保存的user信息，方便popup页面调用
  * TODO：读取option页面信息
@@ -29,8 +32,10 @@ function wiz_initialize_background () {
 
 function saveDocument(info) {
     if (info.isNative) {
+        console.debug('saveToNative');
         Wiz.native.saveDocument(info);
     } else {
+        console.debug('saveToServer');
         Wiz.remote.postDocument(info);
     }
 }
@@ -47,8 +52,11 @@ function messageHandler(event) {
     var data = event.data;
     var requestName = data.name;
     var info = data.info;
+    console.log('background: ' + requestName);
     if (typeof requestName === 'string' && requestName.length > 0) {
-        handlers[requestName](info);
+        if (handlers[requestName]) {
+            handlers[requestName](info);
+        }
     }
 }
 
@@ -64,7 +72,6 @@ function requestPreview (previewOp) {
     if (!previewOp) {
         previewOp = 'article';
     }
-
     opera.extension.broadcastMessage({'name': 'preview', 'op': previewOp, 'url': opera.extension.tabs.getSelected().url});
 }
 
@@ -86,14 +93,14 @@ function popup_request_getCategory() {
 
 
 function contextMenuClickHandler(event) {
-    ShowObjProperty(event);
-    var type = 'native';
-    event.source.postMessage({'name': 'preview', 'op': 'submit', 'type': 'native'});
+    event.source.postMessage({'name': 'preview', 'op': 'submit', 'type': 'native', 'url': opera.extension.tabs.getSelected().url});
 }
 
 function onLoadHandler() {
     toolbarButton = Wiz.opera.addToolbarButton();
-    Wiz.opera.addContextMenuButton(CONTEXTMENU_NAME, contextMenuClickHandler);
+    if (Wiz.native.isInstalled()) {
+        Wiz.opera.addContextMenuButton(CONTEXTMENU_NAME, contextMenuClickHandler);
+    }
 }
 
 window.addEventListener("load", onLoadHandler, false);

@@ -9,10 +9,10 @@ function ClipPageControl(bgProcess) {
 	
 	var saveType = localStorage['saveType'],
 		isNative = (saveType && saveType === 'save_to_native') ? true : false,
-		_hasNative = null;
+		_hasNative = bgProcess.Wiz.native.isInstalled();
 
 	function initClipPageListener() {
-		PopupView.hideCreateDiv();
+		PopupView.hideLogoffDiv();
 		$('body').bind('keyup', keyDownHandler);
 		$('#submit-type').change(changeSubmitTypehandler);
 		$('#note_submit').click(noteSubmit);
@@ -73,20 +73,20 @@ function ClipPageControl(bgProcess) {
 	//监听截取信息事件
 	// chrome.extension.onConnect.addListener(messageListener);
 
-	function messageListener(port) {
-		var name = port.name;
-		switch (name) {
-		case 'contentVeilShow':
-			$('#waiting').hide();
-			if ($('#wiz_clip_detail').is(':hidden')) {
-				initClipPageListener();
-			}
-			break;
-		case 'pagePreviewFailure':
-			exacutePreviewFailure();
-			break;
-		}
-	}
+	// function messageListener(port) {
+	// 	var name = port.name;
+	// 	switch (name) {
+	// 	case 'contentVeilShow':
+	// 		$('#waiting').hide();
+	// 		if ($('#wiz_clip_detail').is(':hidden')) {
+	// 			initClipPageListener();
+	// 		}
+	// 		break;
+	// 	case 'pagePreviewFailure':
+	// 		exacutePreviewFailure();
+	// 		break;
+	// 	}
+	// }
 
 	/**
 	 * 是否windows系统
@@ -126,9 +126,9 @@ function ClipPageControl(bgProcess) {
 	}
 
 
-	function initSubmitGroup(clipPageResponse) {
-		var clipArticle = clipPageResponse.article,
-			clipSelection = clipPageResponse.selection;
+	function initSubmitGroup(info) {
+		var clipArticle = info.article,
+			clipSelection = info.selection;
 		if (clipSelection == true) {
 			$('#submit-type')[0].options[1].selected = true;
 		} else if (clipArticle == true) {
@@ -148,6 +148,8 @@ function ClipPageControl(bgProcess) {
 		}
 		var type = $('#submit-type').val();
 		$('#note_submit').html(type);
+		//设置标题
+		PopupView.setTitle(info.title);
 	}
 
 	//初始化剪辑页面信息
@@ -155,10 +157,7 @@ function ClipPageControl(bgProcess) {
 
 	function initClipPageInfo(evt) {
 		initLogoutLink();
-		requestPageStatus();
-		requestTitle();
 		initDefaultCategory();
-		requestToken();
 		requestCategory();
 	}
 
@@ -364,10 +363,6 @@ function ClipPageControl(bgProcess) {
 	function hasNativeClient() {
 		return _hasNative;
 	}
-	 
-	function setNativeStatus(hasNative) {
-		_hasNative = hasNative;
-	}
-
-	this.setNativeStatus = setNativeStatus;
+	this.initSubmitGroup = initSubmitGroup;
+	this.initClipPageListener = initClipPageListener;
 }

@@ -115,6 +115,7 @@ function Wiz_ContentPreview() {
 		clear();
 		contentVeil.reset();
 		contentVeil.show();
+		wiz_pageInfo.postPageInfoToBg();
 		title = title ? title : window.document.title;
 		url = url ? url : window.location.href;
 		favIconUrl = favIconUrl ? favIconUrl : getFavIconUrl();
@@ -156,6 +157,7 @@ function Wiz_ContentPreview() {
 				};
 				contentVeil.revealRect(contentVeil.expandRect(rect, -14), true);
 				contentVeil.show();
+				wiz_pageInfo.postPageInfoToBg();
 			} else {
 				contentVeil.outlineElement(previewElement, true);
 			}
@@ -484,6 +486,7 @@ function Wiz_ContentPreview() {
 		contentVeil.reset();
 		contentVeil.revealStaticRect(rect, true);
 		contentVeil.show();
+		wiz_pageInfo.postPageInfoToBg();
 	}
 
 	// Creates the union of two rectangles, which is defined to be the smallest rectangle that contains both given
@@ -624,11 +627,14 @@ function Wiz_ContentPreview() {
 			}
 		}
 		contentVeil.show();
+		wiz_pageInfo.postPageInfoToBg();
 	}
 
 	// This handles incoming requests from other extension pages.
 	function messageHandler(event) {
 		var request = event.data;
+		console.log(document.URL);
+		console.log(request.url);
 		if (document.URL !== request.url) {
 			return ;
 		}
