@@ -103,6 +103,15 @@ function onLoadHandler() {
     }
 }
 
+/**
+ * 监听popup页面关闭，清除预览
+ * @param  {[type]} event [description]
+ * @return {[type]}       [description]
+ */
+opera.extension.ondisconnect = function(event) {
+    requestPreview('clear');
+};
+
 window.addEventListener("load", onLoadHandler, false);
 opera.extension.onmessage = messageHandler;
 wiz_initialize_background();
