@@ -8,7 +8,8 @@ if (typeof Wiz === 'undefined') {
 		_native: null,
 		_background: null
 	};
-	Wiz.XMLRPC_URL = 'http://service.wiz.cn/wizkm/xmlrpc';
+	Wiz.XMLRPC_URL = 'http://webclip.openapi.wiz.cn/wizkm/xmlrpc';
+	Wiz.POST_DOCUMENT_URL = 'http://webclip.openapi.wiz.cn/wizkm/a/web/post?';
 
 	Wiz.getNotification = function () {
 		if (this._notification === null) {

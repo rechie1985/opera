@@ -89,8 +89,10 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 	if (token !== null) {
 		var error = function (err) {
 			try {
+				console.error('Wiz.Remote.postDocument() callError: ' + err);
 				var respJson = JSON.parse(err);
 				if (respJson.return_code != 200) {
+					console.error('Wiz.Remote.postDocument() success: ' + err);
 					// Wiz.notificator.showError(respJson.return_message);
 				} else {
 					// Wiz.notificator.showClipSuccess(docInfo.title);

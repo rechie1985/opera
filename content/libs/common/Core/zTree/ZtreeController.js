@@ -99,6 +99,7 @@ function ZtreeController() {
 	}
 
 	function initTree(id) {
+		console.debug(JSON.stringify(zNodesObj));
 		$.fn.zTree.init($('#' + id), setting, zNodesObj);
 	}
 	this.initTree = initTree;
@@ -127,17 +128,17 @@ var specialLocation = {
  */
 function changeSpecilaLoction(location) {
 	// 'use strict' ;
-	$.each(specialLocation, function (key, value) {
-		var index = location.indexOf(key);
+	// $.each(specialLocation, function (key, value) {
+	// 	var index = location.indexOf(key);
 
-		if (index === 0 && location === key) {
-			location = value;
-			return false;
-		}
-		if (index === 1 && location.indexOf('/') === 0) {
-			location = '/' + value + location.substr(key.length + 1);
-			return false;
-		}
-	});
+	// 	if (index === 0 && location === key) {
+	// 		location = value;
+	// 		return false;
+	// 	}
+	// 	if (index === 1 && location.indexOf('/') === 0) {
+	// 		location = '/' + value + location.substr(key.length + 1);
+	// 		return false;
+	// 	}
+	// });
 	return location;
 }

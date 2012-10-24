@@ -5,6 +5,6 @@
   	<author href="http://www.wiz.cn" email="support@wiz.cn">Wiz Note</author>
   	<icon src="icons/64x64logo.png"/>
     <feature name="opera:contextmenus"/>
-	<access origin="http://service.wiz.cn" subdomains="true" />
+	<access origin="http://webclip.openapi.wiz.cn" subdomains="true" />
   	<preference name="inject_jquery" value="true"/>
 </widget>

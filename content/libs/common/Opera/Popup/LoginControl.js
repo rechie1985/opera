@@ -61,11 +61,4 @@ function LoginControl(bgProcess) {
 		return true;
 
 	}
-
-	function initCreateAccountLink() {
-		$('#create_acount').bind('click', function(evt) {
-			window.open('http://service.wiz.cn/wizkm/a/signup');
-		});
-	}
-	this.initCreateAccountLink = initCreateAccountLink;
 }

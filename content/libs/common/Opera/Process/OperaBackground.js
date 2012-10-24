@@ -9,7 +9,7 @@ Wiz.OperaBackground = function () {
 
 
 Wiz.OperaBackground.prototype.sendCategoryToPopup = function (categories) {
-	opera.extension.broadcastMessage('name': 'responseCategories', 'info': categories);
+	opera.extension.broadcastMessage({'name': 'responseCategories', 'info': categories});
 };
 
 Wiz.OperaBackground.prototype.getCacheCategories = function () {

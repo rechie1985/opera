@@ -6,7 +6,6 @@ Wiz.Default = {
 	TOKEN_EXPIRE_SEC: 3 * 60,
 	REFRESH_TOKEN_TIME_MS: 4 * 60 * 1000,
 	AUTH_COOKIE: 'wiznote_auth',
-	XMLURL : 'http://service.wiz.cn/wizkm/xmlrpc',
 	COOKIEURL : 'http://service.wiz.cn/web',
 	AUTHORITY : 'wiz-clip-auth',
 	STORAGE_USERID: 'wiz-clip-userid',

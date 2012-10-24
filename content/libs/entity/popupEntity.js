@@ -20,7 +20,8 @@ $(document).ready(function () {
 	}
 
 	var handlers = {
-		'showClipPage': showClipPage
+		'showClipPage': showClipPage,
+		'responseCategories': clipPageCtrl.parseWizCategory
 	};
 
 	function showClipPage(info) {

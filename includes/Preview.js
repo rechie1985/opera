@@ -157,7 +157,6 @@ function Wiz_ContentPreview() {
 				};
 				contentVeil.revealRect(contentVeil.expandRect(rect, -14), true);
 				contentVeil.show();
-				wiz_pageInfo.postPageInfoToBg();
 			} else {
 				contentVeil.outlineElement(previewElement, true);
 			}
@@ -165,6 +164,7 @@ function Wiz_ContentPreview() {
 				showPreviewLegend();
 				setTimeout(hidePreviewLegend, 5000);
 			}
+			wiz_pageInfo.postPageInfoToBg();
 		} else {
 			previewFullPage();
 			console.warn("Couldn't find a preview element. We need switch to 'full page' mode.");
@@ -633,8 +633,6 @@ function Wiz_ContentPreview() {
 	// This handles incoming requests from other extension pages.
 	function messageHandler(event) {
 		var request = event.data;
-		console.log(document.URL);
-		console.log(request.url);
 		if (document.URL !== request.url) {
 			return ;
 		}

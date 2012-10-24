@@ -161,7 +161,6 @@ function ClipPageControl(bgProcess) {
 	function initClipPageInfo(evt) {
 		initLogoutLink();
 		initDefaultCategory();
-		requestCategory();
 	}
 
 
@@ -219,8 +218,12 @@ function ClipPageControl(bgProcess) {
 	 */
 
 	function parseWizCategory(categoryStr) {
-
-		initZtree();
+		console.debug('ClipPageControl.parseWizCategory(): ' + categoryStr);
+		if (typeof categoryStr !== 'string' || categoryStr.length < 1) {
+			//目录获取失败
+			return;
+		}
+		initZtree(categoryStr);
 		var visible = isCategoryLoading();
 		if (visible) {
 			//用户已经点击展开文件夹树，此时，需要直接显示文件夹树即可
@@ -230,8 +233,7 @@ function ClipPageControl(bgProcess) {
 		$('#category_info').click(switchCategoryTreeVisible);
 	}
 
-	function initZtree() {
-		var categoryString = localStorage['category'];
+	function initZtree(categoryString) {
 		var ztreeJson = ztreeControl.parseDate(categoryString);
 		ztreeControl.setNodes(ztreeJson);
 		ztreeControl.initTree('ztree');
@@ -249,18 +251,6 @@ function ClipPageControl(bgProcess) {
 			$('#ztree_container').show(500);
 		}
 	}
-
-	/**
-	 *加载文件夹信息
-	 */
-
-	function requestCategory() {
-	}
-
-
-	function requestToken() {
-	}
-
 
 	function keyDownHandler(evt) {
 		var target = evt.target,
@@ -336,7 +326,7 @@ function ClipPageControl(bgProcess) {
 			title = $('#wiz_note_title').val(),
 			category = $('#category_info').attr('location'),
 			comment = $('#comment-info').val(),
-			userid = localStorage['wiz-clip-auth'],
+			userid = bgProcess.Wiz.context.userId,
 			info = {
 				title: title,
 				category: category,
@@ -344,6 +334,9 @@ function ClipPageControl(bgProcess) {
 				userid : userid,
 				isNative : isNative
 			};
+			console.debug(userid);
+			bgProcess.request_submit(type, info);
+
 	}
 
 	function initUserLink(token) {
@@ -368,4 +361,5 @@ function ClipPageControl(bgProcess) {
 	}
 	this.initSubmitGroup = initSubmitGroup;
 	this.initClipPageListener = initClipPageListener;
+	this.parseWizCategory = parseWizCategory;
 }
