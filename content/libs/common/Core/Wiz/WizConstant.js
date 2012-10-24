@@ -15,11 +15,6 @@ Wiz.Default = {
 	CATEGORY_EXPIRE_SEC: 10 * 60,
 	PREVIEW_OVER_TIME_MS: 5000						//30秒超时
 };
-
-Wiz.LOGIN_PARAMS = {
-	CLIENT_TYPE: 'webclip_opera',
-	API_VERSION: 3
-};
 Wiz.Api = {
 	ACCOUNT_LOGIN: 'accounts.clientLogin',
 	ACCOUNT_KEEPALIVE: 'accounts.keepAlive',

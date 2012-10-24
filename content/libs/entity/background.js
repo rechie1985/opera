@@ -12,7 +12,7 @@ var handlers = {
     'responsePageInfo': content_request_showClipPage
 };
 
-function content_request_showClipPage(info) {    
+function content_request_showClipPage(info) {
     opera.extension.broadcastMessage({'name': 'showClipPage', 'info': info});
 }
 /**
