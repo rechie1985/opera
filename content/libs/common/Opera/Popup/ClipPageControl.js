@@ -342,10 +342,10 @@ function ClipPageControl(bgProcess) {
 
 	}
 
-	function initUserLink(token) {
+	function initUserLink(userId, token) {
 		var user_id = localStorage['wiz-clip-auth'];
-		$('#header_username').html('(' + user_id + ')').bind('click', function (evt) {
-			window.open(mainUrl + '/?t=' + token);
+		$('#header_username').html('(' + userId + ')').bind('click', function (evt) {
+			window.open(Wiz.Default.COOKIEURL + '/?t=' + token);
 		});
 	}
 
@@ -365,4 +365,5 @@ function ClipPageControl(bgProcess) {
 	this.initSubmitGroup = initSubmitGroup;
 	this.initClipPageListener = initClipPageListener;
 	this.parseWizCategory = parseWizCategory;
+	this.initUserLink = initUserLink;
 }

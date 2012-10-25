@@ -30,6 +30,7 @@ $(document).ready(function () {
 			PopupView.showClipPage();
 			clipPageCtrl.initSubmitGroup(info);
 			clipPageCtrl.initClipPageListener();
+			clipPageCtrl.initUserLink(bgWiz.context.userId, bgWiz.context.token);
 			bClipPageShowing = true;
 		}
 	}
