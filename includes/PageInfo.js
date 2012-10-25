@@ -279,12 +279,12 @@ function Wiz_PageInfo(Node) {
 			documentHeight : documentHeight,
 			url : url,
 			selection : (isSelected !== null),
-			selectionIsInFrame : selectionIsInFrame,
+			// selectionIsInFrame : selectionIsInFrame,
 			documentLength : document.body.textContent.length,
-			articleBoundingClientRect : articleBoundingClientRect,
+			// articleBoundingClientRect : articleBoundingClientRect,
 			article : (article != null),
-			recommendationText : getRecommendationText(),
-			documentIsFrameset : documentIsFrameset,
+			// recommendationText : getRecommendationText(),
+			// documentIsFrameset : documentIsFrameset,
 			title  : document.title
 		};
 		opera.extension.postMessage({'name': 'responsePageInfo', 'info': response});
