@@ -70,6 +70,14 @@ function popup_request_initialize() {
     Wiz.remote.autoLogin(requestPreview);
 }
 
+function popup_request_signOut() {
+    Wiz.context.authority = '';
+    Wiz.context.token = '';
+    Wiz.context.userId = '';
+    Wiz.storageManager.remove(Wiz.Default.AUTHORITY);
+    Wiz.storageManager.remove(Wiz.Default.STORAGE_USERID);
+}
+
 function requestPreview (previewOp, type, info) {
     if (!previewOp) {
         previewOp = 'article';

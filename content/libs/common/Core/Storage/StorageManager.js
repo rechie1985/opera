@@ -44,3 +44,11 @@ Wiz.StorageManager.prototype.get = function (key, bSession) {
 	return storageValue;
 };
 
+Wiz.StorageManager.prototype.remove = function (key) {
+	try {
+		window.localStorage.removeItem(key);
+		window.sessionStorage.removeItem(key);
+	} catch (err) {
+		console.error('Wiz.StorageManager.remove() Error: ' + err);
+	}
+};

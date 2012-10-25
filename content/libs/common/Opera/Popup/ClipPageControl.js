@@ -5,8 +5,8 @@ var updateClientUrl = 'http://www.wiz.cn/wiznote_web_clipper_chrome';
 
 function ClipPageControl(bgProcess) {
 	'use strict';
-	
-	
+
+
 	var saveType = localStorage['saveType'],
 		isNative = (saveType && saveType === 'save_to_native') ? true : false,
 		_hasNative = bgProcess.Wiz.native.isInstalled();
@@ -45,12 +45,13 @@ function ClipPageControl(bgProcess) {
 	 * @param  {[type]} evt [description]
 	 * @return {[type]}     [description]
 	 */
+
 	function changeSaveTypehandler(evt) {
 		var selectedOption = $('option:selected', '#save_type_sel'),
 			type = selectedOption.attr('id');
 		if ('save_to_native' === type && !checkNativeStatus()) {
 			evt.preventDefault();
-			return ;
+			return;
 		}
 		setSaveType(type);
 	}
@@ -73,7 +74,6 @@ function ClipPageControl(bgProcess) {
 
 	//监听截取信息事件
 	// chrome.extension.onConnect.addListener(messageListener);
-
 	// function messageListener(port) {
 	// 	var name = port.name;
 	// 	switch (name) {
@@ -88,14 +88,15 @@ function ClipPageControl(bgProcess) {
 	// 		break;
 	// 	}
 	// }
-
 	/**
 	 * 是否windows系统
 	 * @return {Boolean} [description]
 	 */
+
 	function isWinPlatform() {
 		var platform = window.navigator.platform,
-			isMac = (platform.toLowerCase().indexOf('mac') === 0),//(platform === "Mac68K") || (platform === "MacPPC") || (platform === "Macintosh");
+			isMac = (platform.toLowerCase().indexOf('mac') === 0),
+			//(platform === "Mac68K") || (platform === "MacPPC") || (platform === "Macintosh");
 			isLinux = (platform.toLowerCase().indexOf('linux') === 0);
 		if (isMac || isLinux) {
 			return false;
@@ -117,7 +118,7 @@ function ClipPageControl(bgProcess) {
 		if ('native' === cmd) {
 			if (!checkNativeStatus()) {
 				evt.preventDefault();
-				return ;
+				return;
 			}
 			noteSubmit();
 		} else {
@@ -157,7 +158,6 @@ function ClipPageControl(bgProcess) {
 
 	//初始化剪辑页面信息
 
-
 	function initClipPageInfo(evt) {
 		initLogoutLink();
 		initDefaultCategory();
@@ -170,6 +170,7 @@ function ClipPageControl(bgProcess) {
 	}
 
 	function cmdLogout() {
+		bgProcess.popup_request_signOut();
 		window.close();
 	}
 
@@ -177,8 +178,7 @@ function ClipPageControl(bgProcess) {
 	 *加载标题
 	 */
 
-	function requestTitle() {
-	}
+	function requestTitle() {}
 
 	/**
 	 * 加载并显示默认文件夹---上次选择的文件夹
@@ -203,7 +203,7 @@ function ClipPageControl(bgProcess) {
 		if (visible) {
 			PopupView.hideCategoryLoading();
 		} else {
-			var categoryLoadingMsg = 'now loading...';//chrome.i18n.getMessage('category_loading');
+			var categoryLoadingMsg = 'now loading...'; //chrome.i18n.getMessage('category_loading');
 			PopupView.showCategoryLoading(categoryLoadingMsg);
 			PopupView.resize(bgProcess.toolbarButton.popup, null, 360);
 		}
@@ -285,23 +285,23 @@ function ClipPageControl(bgProcess) {
 			KEY_ALT = 18,
 			KEY_CTRL = 17,
 			keyMap = {
-			27: 'cancle',
-			38: 'expand',
-			// up
-			40: 'shrink',
-			// down
-			37: 'left',
-			39: 'right',
+				27: 'cancle',
+				38: 'expand',
+				// up
+				40: 'shrink',
+				// down
+				37: 'left',
+				39: 'right',
 
-			56: 'topexpand',
-			// alt + up
-			58: 'topshrink',
-			// alt + down
-			57: 'bottomexpand',
-			// ctrl + down
-			55: 'bottomshrink'
-			// ctrl + up
-		};
+				56: 'topexpand',
+				// alt + up
+				58: 'topshrink',
+				// alt + down
+				57: 'bottomexpand',
+				// ctrl + down
+				55: 'bottomshrink'
+				// ctrl + up
+			};
 
 		if (keyMap[key]) {
 			if (evt && evt.altKey == true) { // 18
@@ -334,24 +334,24 @@ function ClipPageControl(bgProcess) {
 				title: title,
 				category: category,
 				comment: comment,
-				userid : userid,
-				isNative : isNative
+				userid: userid,
+				isNative: isNative
 			};
-			console.debug(userid);
-			bgProcess.request_submit(type, info);
+		console.debug(userid);
+		bgProcess.request_submit(type, info);
 
 	}
 
 	function initUserLink(userId, token) {
 		var user_id = localStorage['wiz-clip-auth'];
-		$('#header_username').html('(' + userId + ')').bind('click', function (evt) {
+		$('#header_username').html('(' + userId + ')').bind('click', function(evt) {
 			window.open(Wiz.Default.COOKIEURL + '/?t=' + token);
 		});
 	}
 
 	function checkNativeStatus() {
 		if (!hasNativeClient()) {
-			var installNotifyMsg = 'need install pc client';//chrome.i18n.getMessage('install_client_notify');
+			var installNotifyMsg = 'need install pc client'; //chrome.i18n.getMessage('install_client_notify');
 			if (window.confirm(installNotifyMsg)) {
 				window.open(updateClientUrl);
 			}
