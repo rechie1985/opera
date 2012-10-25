@@ -110,7 +110,7 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 				title = docInfo.title,
 				category = docInfo.category,
 				comment = docInfo.comment,
-				body = docInfo.content;
+				body = docInfo.params;
 			  
 			if (comment && comment.trim() !== '') {
 				body = comment + '<hr>' + body;
