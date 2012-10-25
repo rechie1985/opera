@@ -7,6 +7,7 @@ $(document).ready(function () {
 		var loginCtrl = new LoginControl(bgProcess);
 		var clipPageCtrl = new ClipPageControl(bgProcess);
 		var bgWiz = bgProcess.Wiz;
+		PopupView.resize(bgProcess.toolbarButton.popup, null, 320);
 	} catch (err) {
 		console.error('popupPage opera.extension.bgProcess Errpr: ' + err);
 	}

@@ -20,7 +20,6 @@ function ClipPageControl(bgProcess) {
 		$('#comment-info').bind('focus', resizeCommentHeight);
 		$('#wiz_clip_detail').show(initClipPageInfo);
 		$('#category_info').bind('click', changeCategoryLoadingStatus);
-		PopupView.resize(bgProcess.toolbarButton.popup, null, 320);
 		initNativeDiv();
 	}
 
