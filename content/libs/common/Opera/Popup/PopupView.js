@@ -81,8 +81,15 @@ var PopupView = {
 	},
 	resize : function (operaPopupObj, width, height) {
 		try {
-			operaPopupObj.width = width;
-			operaPopupObj.height = height;
+			if (!operaPopupObj) {
+				return;
+			}
+			if (width) {
+				operaPopupObj.width = width;
+			}
+			if (height) {
+				operaPopupObj.height = height;
+			}
 		} catch (err) {
 			console.error('popupEntity.resize() Error: ' + err);
 		}

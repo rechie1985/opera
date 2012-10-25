@@ -20,6 +20,7 @@ function ClipPageControl(bgProcess) {
 		$('#comment-info').bind('focus', resizeCommentHeight);
 		$('#wiz_clip_detail').show(initClipPageInfo);
 		$('#category_info').bind('click', changeCategoryLoadingStatus);
+		PopupView.resize(bgProcess.toolbarButton.popup, null, 320);
 		initNativeDiv();
 	}
 
@@ -205,6 +206,7 @@ function ClipPageControl(bgProcess) {
 		} else {
 			var categoryLoadingMsg = 'now loading...';//chrome.i18n.getMessage('category_loading');
 			PopupView.showCategoryLoading(categoryLoadingMsg);
+			PopupView.resize(bgProcess.toolbarButton.popup, null, 360);
 		}
 	}
 
@@ -247,8 +249,10 @@ function ClipPageControl(bgProcess) {
 		var visible = $('#ztree_container').is(':visible');
 		if (visible) {
 			$('#ztree_container').hide(500);
+			PopupView.resize(bgProcess.toolbarButton.popup, null, 320);
 		} else {
 			$('#ztree_container').show(500);
+			PopupView.resize(bgProcess.toolbarButton.popup, null, 500);
 		}
 	}
 

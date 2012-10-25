@@ -14,7 +14,7 @@
                     popup: {
                         href: "popup.html",
                         width: 520,
-                        height: 300
+                        height: 320
                     }
                 }
                 theButton = opera.contexts.toolbar.createItem(ToolbarUIItemProperties);
