@@ -66,7 +66,7 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 Wiz.Remote.prototype.getAllCategory = function (callSuccess, callError) {
 	try {
 		var success = function (resp) {
-			if (200 == resp.return_code) {
+			if (200 == resp.return_code && callSuccess) {
 				callSuccess(resp.categories);
 			} else {
 				//TODO
@@ -92,6 +92,8 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 				console.error('Wiz.Remote.postDocument() callError: ' + err);
 				var respJson = JSON.parse(err);
 				if (respJson.return_code != 200) {
+					// 保存成功后，如果没有本地客户端，从服务端获取最新目录信息
+					Wiz.remote.getAllCategory();
 					console.error('Wiz.Remote.postDocument() success: ' + err);
 					// Wiz.notificator.showError(respJson.return_message);
 				} else {
@@ -122,6 +124,7 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 
 			var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(token).replace(regexp,  '+') 
 								+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
+			console.debug('document body : ' + body);			
 			ajax(Wiz.POST_DOCUMENT_URL, requestData, success, error);
 		} catch (err) {
 			console.error('Wiz.Remote.postDocument() Error : ' + err);

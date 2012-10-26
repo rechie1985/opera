@@ -8,7 +8,6 @@
 	<description xml:lang="zh_TW">使用「為知筆記」擴充程式，將網路上您需要的內容與網頁儲存到您自己的帳戶</description>
   	<author href="http://www.wiz.cn" email="support@wiz.cn">Wiz Note</author>
   	<icon src="icons/64x64logo.png"/>
-    <feature name="opera:contextmenus"/>
 	<access origin="http://webclip.openapi.wiz.cn" subdomains="true" />
   	<preference name="inject_jquery" value="true"/>
 </widget>

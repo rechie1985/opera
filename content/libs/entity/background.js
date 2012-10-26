@@ -38,7 +38,8 @@ function saveDocument(info) {
         Wiz.native.saveDocument(info);
     } else {
         console.debug('saveToServer');
-        Wiz.remote.postDocument(info);
+        Wiz.remote.autoLogin(Wiz.remote.postDocument, info);
+        // Wiz.remote.postDocument(info);
     }
 }
 
@@ -67,7 +68,8 @@ function messageHandler(event) {
  * @return {[type]} [description]
  */
 function popup_request_initialize() {
-    Wiz.remote.autoLogin(requestPreview);
+    requestPreview();
+    // Wiz.remote.autoLogin(requestPreview);
 }
 
 function popup_request_signOut() {
