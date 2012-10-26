@@ -244,8 +244,10 @@ var ClientClipper = function ($) {
 			if (winsel == null || winsel.toString() == "") {
 				var activeFrame = wiz_getActiveFrame(win);
 				if (activeFrame != null) {
-					winsel = activeFrame.getSelection();
+					winsel = activeFrame.getSelection() + "";
 					frame_url = wiz_base64Encode(activeFrame.location.href);
+					alert(typeof winsel);
+					ShowObjProperty(winsel);
 				}
 			}
 			if (winsel == null || winsel == "") {
@@ -306,7 +308,7 @@ var ClientClipper = function ($) {
 	}
 
 	function launchClientClipperSelection(info) {
-		var body = getSelectedHTML();
+		var body = wiz_getSelected(window);
 		var params;
 		if (info.isNative) {
 			params = wiz_collectAllFrames(window) + formatParams(info.url, body);
@@ -401,7 +403,6 @@ var ClientClipper = function ($) {
 		} else if(!isSaveMore){
 			info.params = addExtraParams(info);
 		}
-
 		opera.extension.postMessage({'name': 'saveDocument', 'info': info});
 		//由于maxthon3 post发送消息，obj的大小有限制，如果网页内容过大的话，无法发送到监听端
 		//而API中storage的大小并没有限制，所以把获取到的params保存在storage中

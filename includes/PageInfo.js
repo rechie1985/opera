@@ -199,12 +199,11 @@ function Wiz_PageInfo(Node) {
 		for (var i = 0; i < frames.length; i++) {
 			docs.push(frames[i]);
 		}
-
 		for (var i = 0; i < docs.length; i++) {
-			var doc = docs[i].contentDocument;
-			if (doc) {
+			var win = docs[i].contentWindow;
+			if (win) {
 				try {
-					var frameSelection = doc.getSelection();
+					var frameSelection = win.getSelection();
 					if (frameSelection && frameSelection.rangeCount && !frameSelection.isCollapsed) {
 						selectionIsInFrame = true;
 						selectionFrameElement = docs[i];
