@@ -13,7 +13,7 @@ function LoginControl(bgProcess) {
 	$('#password').blur(checkPassword);
 
 	function doLogin() {
-		var loginingMsg = 'waiting login';//chrome.i18n.getMessage('logining');
+		var loginingMsg = operaI18N.getMessage('logining');
 		PopupView.showWaiting(loginingMsg);
 
 		var loginParam = new Object();
@@ -38,7 +38,7 @@ function LoginControl(bgProcess) {
 		var email = $('#user_id').val();
 		var valid = verifyEmail(email);
 		if (!valid) {
-			$('#userid_error_tip').html('email error').show(100);
+			$('#userid_error_tip').html(operaI18N.getMessage('userid_error')).show(100);
 		}
 		return valid;
 
@@ -55,7 +55,7 @@ function LoginControl(bgProcess) {
 		$('#password_error_tip').hide();
 		var password = $('#password').val();
 		if (password.trim().length < 1) {
-			$('#password_error_tip').html('password error').show(100);
+			$('#password_error_tip').html(operaI18N.getMessage('password_error')).show(100);
 			return false;
 		}
 		return true;

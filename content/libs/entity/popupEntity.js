@@ -2,6 +2,7 @@ $(document).ready(function () {
 	'use strict';
 	//使用bgProcess的Wiz上下文，可以免去一些消息传输的时间
 	try {
+		PopupView.initPopupPage();
 		var bClipPageShowing = false;
 		var bgProcess = (new Wiz.OperaBgProcess()).process;
 		var loginCtrl = new LoginControl(bgProcess);

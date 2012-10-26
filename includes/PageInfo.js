@@ -203,11 +203,15 @@ function Wiz_PageInfo(Node) {
 		for (var i = 0; i < docs.length; i++) {
 			var doc = docs[i].contentDocument;
 			if (doc) {
-				var frameSelection = doc.getSelection();
-				if (frameSelection && frameSelection.rangeCount && !frameSelection.isCollapsed) {
-					selectionIsInFrame = true;
-					selectionFrameElement = docs[i];
-					return frameSelection;
+				try {
+					var frameSelection = doc.getSelection();
+					if (frameSelection && frameSelection.rangeCount && !frameSelection.isCollapsed) {
+						selectionIsInFrame = true;
+						selectionFrameElement = docs[i];
+						return frameSelection;
+					}
+				} catch (err) {
+					console.warn('iframe getSelection Error: ' + err);
 				}
 			} else {
 				console.warn("iframe contained no Document object.");

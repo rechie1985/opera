@@ -166,7 +166,8 @@ function ClipPageControl(bgProcess) {
 
 	function initLogoutLink() {
 		$('#header_user').show();
-		$('#logout_control').bind('click', cmdLogout);
+		PopupView.showLoginDiv();
+		$('#logout_control').html(operaI18N.getMessage('logout')).bind('click', cmdLogout);
 	}
 
 	function cmdLogout() {
@@ -203,7 +204,7 @@ function ClipPageControl(bgProcess) {
 		if (visible) {
 			PopupView.hideCategoryLoading();
 		} else {
-			var categoryLoadingMsg = 'now loading...'; //chrome.i18n.getMessage('category_loading');
+			var categoryLoadingMsg = operaI18N.getMessage('category_loading');
 			PopupView.showCategoryLoading(categoryLoadingMsg);
 			PopupView.resize(bgProcess.toolbarButton.popup, null, 360);
 		}
@@ -351,7 +352,7 @@ function ClipPageControl(bgProcess) {
 
 	function checkNativeStatus() {
 		if (!hasNativeClient()) {
-			var installNotifyMsg = 'need install pc client'; //chrome.i18n.getMessage('install_client_notify');
+			var installNotifyMsg = operaI18N.getMessage('install_client_notify');
 			if (window.confirm(installNotifyMsg)) {
 				window.open(updateClientUrl);
 			}
