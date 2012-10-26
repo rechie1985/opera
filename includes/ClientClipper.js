@@ -244,10 +244,9 @@ var ClientClipper = function ($) {
 			if (winsel == null || winsel.toString() == "") {
 				var activeFrame = wiz_getActiveFrame(win);
 				if (activeFrame != null) {
-					winsel = activeFrame.getSelection() + "";
+					winsel = getSelectedHTML(activeFrame);
 					frame_url = wiz_base64Encode(activeFrame.location.href);
 					alert(typeof winsel);
-					ShowObjProperty(winsel);
 				}
 			}
 			if (winsel == null || winsel == "") {
@@ -308,7 +307,7 @@ var ClientClipper = function ($) {
 	}
 
 	function launchClientClipperSelection(info) {
-		var body = wiz_getSelected(window);
+		var body = getSelectedHTML(window) ? getSelectedHTML(window) : wiz_getSelected(window);
 		var params;
 		if (info.isNative) {
 			params = wiz_collectAllFrames(window) + formatParams(info.url, body);
@@ -369,7 +368,7 @@ var ClientClipper = function ($) {
 		return fullpage;
 	}
 
-	function getSelectedHTML() {
+	function getSelectedHTML(document) {
 		var selection = document.getSelection();
 		if (selection.rangeCount > 0) {
 			var range = selection.getRangeAt(0);
