@@ -23,7 +23,8 @@ $(document).ready(function () {
 
 	var handlers = {
 		'showClipPage': showClipPage,
-		'responseCategories': clipPageCtrl.parseWizCategory
+		'responseCategories': clipPageCtrl.parseWizCategory,
+		'loginError': PopupView.showLoginError
 	};
 
 	function showClipPage(info) {

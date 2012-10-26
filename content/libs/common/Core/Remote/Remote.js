@@ -54,7 +54,7 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 			}
 		};
 		var	callError = callError || function(error){
-			console.log('Wiz.Remote.clientLogin() callError: ' + error);
+			Wiz.background.sendLoginError(error);
 		};
 
 		xmlrpc(Wiz.XMLRPC_URL, Wiz.Api.ACCOUNT_LOGIN, [postParams], success, callError);

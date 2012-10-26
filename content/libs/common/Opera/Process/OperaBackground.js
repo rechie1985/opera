@@ -12,6 +12,10 @@ Wiz.OperaBackground.prototype.sendCategoryToPopup = function (categories) {
 	opera.extension.broadcastMessage({'name': 'responseCategories', 'info': categories});
 };
 
+Wiz.OperaBackground.prototype.sendLoginError = function (errorMsg) {
+	opera.extension.broadcastMessage({'name': 'loginError', 'info': errorMsg});
+};
+
 Wiz.OperaBackground.prototype.getCacheCategories = function () {
 	var localCategoryStr = localStorage.getItem(Wiz.Default.COOKIE_CATEGORY),
 		storedTimeStr = localStorage.getItem(Wiz.Default.COOKIE_CATEGORY_TIME),
