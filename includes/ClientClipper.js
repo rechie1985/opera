@@ -352,7 +352,7 @@ var ClientClipper = function ($) {
 	function launchNativeClipper(info) {
 		var isNative = true;
 		var params = wiz_collectAllFrames(window);
-		var selectHTML = getSelectedHTML();
+		var selectHTML = getSelectedHTML(window);
 		params = params + formatParams(info.url, selectHTML); 
 		info.isNative = isNative;
 		info.params = params;
