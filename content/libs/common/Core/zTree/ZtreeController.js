@@ -108,37 +108,37 @@ function ZtreeController() {
 }
 
 var specialLocation = {
-	// 'My Notes' : chrome.i18n.getMessage('MyNotes'),
-	// 'My Mobiles' : chrome.i18n.getMessage('MyMobiles'),
-	// 'My Drafts' : chrome.i18n.getMessage('MyDrafts'),
-	// 'My Journals' : chrome.i18n.getMessage('MyJournals'),
-	// 'My Events' : chrome.i18n.getMessage('MyEvents'),
-	// 'My Contacts' : chrome.i18n.getMessage('MyContacts'),
-	// 'My Tasks' : chrome.i18n.getMessage('MyTasks'),
-	// 'Deleted Items' : chrome.i18n.getMessage('DeletedItems'),
-	// 'My Sticky Notes' : chrome.i18n.getMessage('MyStickyNotes'),
-	// 'Inbox' : chrome.i18n.getMessage('Inbox'),
-	// 'Completed' : chrome.i18n.getMessage('Completed'),
-	// 'My Photos' : chrome.i18n.getMessage('MyPhotos'),
-	// 'My Emails' : chrome.i18n.getMessage('MyEmails')
+	'My Notes' : operaI18N.getMessage('MyNotes'),
+	'My Mobiles' : operaI18N.getMessage('MyMobiles'),
+	'My Drafts' : operaI18N.getMessage('MyDrafts'),
+	'My Journals' : operaI18N.getMessage('MyJournals'),
+	'My Events' : operaI18N.getMessage('MyEvents'),
+	'My Contacts' : operaI18N.getMessage('MyContacts'),
+	'My Tasks' : operaI18N.getMessage('MyTasks'),
+	'Deleted Items' : operaI18N.getMessage('DeletedItems'),
+	'My Sticky Notes' : operaI18N.getMessage('MyStickyNotes'),
+	'Inbox' : operaI18N.getMessage('Inbox'),
+	'Completed' : operaI18N.getMessage('Completed'),
+	'My Photos' : operaI18N.getMessage('MyPhotos'),
+	'My Emails' : operaI18N.getMessage('MyEmails')
 }
 
 /**
  * 对特殊的文件夹处理，返回相应的显示名
  */
 function changeSpecilaLoction(location) {
-	// 'use strict' ;
-	// $.each(specialLocation, function (key, value) {
-	// 	var index = location.indexOf(key);
+	'use strict' ;
+	$.each(specialLocation, function (key, value) {
+		var index = location.indexOf(key);
 
-	// 	if (index === 0 && location === key) {
-	// 		location = value;
-	// 		return false;
-	// 	}
-	// 	if (index === 1 && location.indexOf('/') === 0) {
-	// 		location = '/' + value + location.substr(key.length + 1);
-	// 		return false;
-	// 	}
-	// });
+		if (index === 0 && location === key) {
+			location = value;
+			return false;
+		}
+		if (index === 1 && location.indexOf('/') === 0) {
+			location = '/' + value + location.substr(key.length + 1);
+			return false;
+		}
+	});
 	return location;
 }
