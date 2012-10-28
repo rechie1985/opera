@@ -21,7 +21,7 @@ function ClipPageControl(bgProcess, clipResult) {
 		$('#wiz_clip_detail').show(initClipPageInfo);
 		$('#category_info').bind('click', changeCategoryLoadingStatus);
 		$('#submit_button').click(function () {
-			console.log('submit_button clicked');
+			// console.log('submit_button clicked');
 			$('#submit-type').click();
 		});
 		initNativeDiv();
@@ -224,7 +224,7 @@ function ClipPageControl(bgProcess, clipResult) {
 	 */
 
 	function parseWizCategory(categoryStr) {
-		console.debug('ClipPageControl.parseWizCategory(): ' + categoryStr);
+		// console.debug('ClipPageControl.parseWizCategory(): ' + categoryStr);
 		if (typeof categoryStr !== 'string' || categoryStr.length < 1) {
 			//目录获取失败
 			return;
@@ -266,7 +266,6 @@ function ClipPageControl(bgProcess, clipResult) {
 			skipIndex;
 		for (skipIndex = 0; skipIndex < skipTypes.length; skipIndex++) {
 			if (evt.srcElement.nodeName.toLowerCase() == skipTypes[skipIndex]) {
-				console.log(skipTypes[skipIndex]);
 				return;
 			}
 		}
@@ -342,7 +341,7 @@ function ClipPageControl(bgProcess, clipResult) {
 				userid: userid,
 				isNative: isNative
 			};
-		console.debug(userid);
+		// console.debug(userid);
 		bgProcess.request_submit(type, info);
 		if (!isNative) {
 			PopupView.showClipStatus();

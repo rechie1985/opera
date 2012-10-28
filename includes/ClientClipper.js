@@ -286,7 +286,7 @@ var ClientClipper = function ($) {
 		} else {
 			params = wiz_getSelected(window, info.isNative);
 		}
-		console.debug('ClientClipper.launchClientClipperArticle() info.params: ' + info.params);
+		// console.debug('ClientClipper.launchClientClipperArticle() info.params: ' + info.params);
 		info.params = params;
 		info.cmd = SAVE_CONTENT;
 		requestSaveDoc(info);
@@ -301,7 +301,7 @@ var ClientClipper = function ($) {
 		} else {
 			info.params = body;
 		}
-		console.debug('ClientClipper.launchClientClipperFullPage() info.params: ' + info.params);
+		// console.debug('ClientClipper.launchClientClipperFullPage() info.params: ' + info.params);
 		info.cmd = SAVE_FULLPAGE;
 		requestSaveDoc(info);
 	}
@@ -315,7 +315,7 @@ var ClientClipper = function ($) {
 		} else {
 			info.params = body;
 		}
-		console.debug('ClientClipper.launchClientClipperSelection() info.params: ' + info.params);
+		// console.debug('ClientClipper.launchClientClipperSelection() info.params: ' + info.params);
 		info.cmd = SAVE_SELECTION;
 		requestSaveDoc(info);
 	}
@@ -328,7 +328,7 @@ var ClientClipper = function ($) {
 		} else {
 			info.params = body;
 		}
-		console.debug('ClientClipper.launchClientClipperUrl() info.params: ' + info.params);
+		// console.debug('ClientClipper.launchClientClipperUrl() info.params: ' + info.params);
 		info.cmd = SAVE_URL;
 		requestSaveDoc(info);
 	}

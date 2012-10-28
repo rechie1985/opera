@@ -34,10 +34,10 @@ function wiz_initialize_background () {
 
 function saveDocument(info) {
     if (info.isNative) {
-        console.debug('saveToNative');
+        // console.debug('saveToNative');
         Wiz.native.saveDocument(info);
     } else {
-        console.debug('saveToServer');
+        // console.debug('saveToServer');
         Wiz.remote.autoLogin(Wiz.remote.postDocument, info);
         opera.extension.broadcastMessage({'name': 'clipResult', 'info': info, 'status': 'sync'});
         // Wiz.remote.postDocument(info);
@@ -56,7 +56,7 @@ function messageHandler(event) {
     var data = event.data;
     var requestName = data.name;
     var info = data.info;
-    console.log('background: ' + requestName);
+    // console.log('background: ' + requestName);
     if (typeof requestName === 'string' && requestName.length > 0) {
         if (handlers[requestName]) {
             handlers[requestName](info);

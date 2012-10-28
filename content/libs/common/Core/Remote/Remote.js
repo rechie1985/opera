@@ -27,7 +27,7 @@ Wiz.Remote.autoLoginLimit = 3;
 
 Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, callSuccess, callError) {
 	try {
-		console.debug('Wiz.Remote.clientLogin : ' + username + '---' + password);
+		// console.debug('Wiz.Remote.clientLogin : ' + username + '---' + password);
 
 		var postParams = Wiz.Remote.getPostObj();
 		postParams.user_id = username;
@@ -44,7 +44,7 @@ Wiz.Remote.prototype.clientLogin = function (username, password, rememberMe, cal
 					Wiz.storageManager.set(Wiz.Default.AUTHORITY, Wiz.context.authority, false);
 					Wiz.storageManager.set(Wiz.Default.STORAGE_USERID, username, false);
 				} else {
-					//如果用户点击rememberMe，则使用sessionStorage来保存
+					//如果用户未选中rememberMe，则使用sessionStorage来保存
 					Wiz.storageManager.set(Wiz.Default.AUTHORITY, Wiz.context.authority, true);
 					Wiz.storageManager.set(Wiz.Default.STORAGE_USERID, username, true);
 				}
@@ -89,7 +89,6 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 	if (token !== null) {
 		var error = function (err) {
 			try {
-				console.error('Wiz.Remote.postDocument() callError: ' + err);
 				var respJson = JSON.parse(err);
 				if (respJson.return_code != 200) {
         			opera.extension.broadcastMessage({'name': 'clipResult', 'info': docInfo, 'status': 'error'});	
@@ -128,7 +127,6 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 
 			var requestData = 'title=' + encodeURIComponent(title).replace(regexp,  '+') + '&token_guid=' + encodeURIComponent(token).replace(regexp,  '+') 
 								+ '&body=' + encodeURIComponent(body).replace(regexp,  '+') + '&category=' + encodeURIComponent(category).replace(regexp,  '+');
-			console.debug('document body : ' + body);			
 			ajax(Wiz.POST_DOCUMENT_URL, requestData, success, error);
 		} catch (err) {
 			console.error('Wiz.Remote.postDocument() Error : ' + err);

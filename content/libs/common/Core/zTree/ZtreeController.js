@@ -99,7 +99,6 @@ function ZtreeController() {
 	}
 
 	function initTree(id) {
-		console.debug(JSON.stringify(zNodesObj));
 		$.fn.zTree.init($('#' + id), setting, zNodesObj);
 	}
 	this.initTree = initTree;
