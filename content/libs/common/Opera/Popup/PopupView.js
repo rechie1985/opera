@@ -47,6 +47,13 @@ var PopupView = {
 
 		PopupView.showLogoffDiv();
 	},
+	showClipStatus : function () {
+		$('#clip_result').show();
+		$('#waiting').hide();
+		$('#waiting-label').hide();
+		$('#wiz_login').hide();
+		$('#wiz_clip_detail').hide();
+	},
 	hideCategoryTreeAfterSelect : function (display, delay_ms) {
 		$("#category_info").html(display);
 		$("#ztree_container").hide(delay_ms);

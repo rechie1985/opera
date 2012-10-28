@@ -92,19 +92,23 @@ Wiz.Remote.prototype.postDocument = function (docInfo) {
 				console.error('Wiz.Remote.postDocument() callError: ' + err);
 				var respJson = JSON.parse(err);
 				if (respJson.return_code != 200) {
-					// 保存成功后，如果没有本地客户端，从服务端获取最新目录信息
-					Wiz.remote.getAllCategory();
+        			opera.extension.broadcastMessage({'name': 'clipResult', 'info': docInfo, 'status': 'error'});	
 					console.error('Wiz.Remote.postDocument() success: ' + err);
 					// Wiz.notificator.showError(respJson.return_message);
 				} else {
+					// 保存成功后，如果没有本地客户端，从服务端获取最新目录信息
+					Wiz.remote.getAllCategory();
+        			opera.extension.broadcastMessage({'name': 'clipResult', 'info': docInfo, 'status': 'saved'});
 					// Wiz.notificator.showClipSuccess(docInfo.title);
 				}
 			} catch (e) {
+        		opera.extension.broadcastMessage({'name': 'clipResult', 'info': docInfo, 'status': 'error'});	
 				// Wiz.notificator.showError(e);
 				console.error('Wiz.Remote.postDocument() Error: ' + e);
 			}
 		};
 		var	success = function (info) {
+        	opera.extension.broadcastMessage({'name': 'clipResult', 'info': docInfo, 'status': 'saved'});
 			// Wiz.notificator.showClipSuccess(docInfo.title);
 		};
 		try {

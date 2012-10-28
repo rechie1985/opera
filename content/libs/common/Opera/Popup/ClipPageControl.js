@@ -3,7 +3,7 @@
  */
 var updateClientUrl = 'http://www.wiz.cn/wiznote_web_clipper_chrome';
 
-function ClipPageControl(bgProcess) {
+function ClipPageControl(bgProcess, clipResult) {
 	'use strict';
 
 
@@ -344,7 +344,13 @@ function ClipPageControl(bgProcess) {
 			};
 		console.debug(userid);
 		bgProcess.request_submit(type, info);
-
+		if (!isNative) {
+			PopupView.showClipStatus();
+			PopupView.resize(bgProcess.toolbarButton.popup, null, 150);
+			clipResult.showNotificationByCmd('clip', info);
+		} else {
+			PopupView.close();
+		}
 	}
 
 	function initUserLink(userId, token) {

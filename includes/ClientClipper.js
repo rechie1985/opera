@@ -397,9 +397,7 @@ var ClientClipper = function ($) {
 	}
 
 	function requestSaveDoc(info, isSaveMore) {
-		if (!info.isNative) {
-			clipResult.startClip();
-		} else if(!isSaveMore){
+		if(!isSaveMore){
 			info.params = addExtraParams(info);
 		}
 		opera.extension.postMessage({'name': 'saveDocument', 'info': info});

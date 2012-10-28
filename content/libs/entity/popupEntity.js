@@ -5,8 +5,9 @@ $(document).ready(function () {
 		PopupView.initPopupPage();
 		var bClipPageShowing = false;
 		var bgProcess = (new Wiz.OperaBgProcess()).process;
+		var clipResult = new ClipResult(bgProcess);
 		var loginCtrl = new LoginControl(bgProcess);
-		var clipPageCtrl = new ClipPageControl(bgProcess);
+		var clipPageCtrl = new ClipPageControl(bgProcess, clipResult);
 		var bgWiz = bgProcess.Wiz;
 		PopupView.resize(bgProcess.toolbarButton.popup, null, 320);
 	} catch (err) {
@@ -24,8 +25,13 @@ $(document).ready(function () {
 	var handlers = {
 		'showClipPage': showClipPage,
 		'responseCategories': clipPageCtrl.parseWizCategory,
-		'loginError': PopupView.showLoginError
+		'loginError': PopupView.showLoginError,
+		'clipResult': showClipResult
 	};
+
+	function showClipResult(info, status) {
+		clipResult.showNotificationByCmd(status, info);
+	}
 
 	function showClipPage(info) {
 		if (bClipPageShowing === false) {
@@ -42,7 +48,7 @@ $(document).ready(function () {
 		var requestName = event.data.name;
 		console.log('popup: ' + requestName);
 		if (typeof requestName === 'string' && handlers[requestName]) {
-			handlers[requestName](event.data.info);
+			handlers[requestName](event.data.info, event.data.status);
 		}
 	};
 });

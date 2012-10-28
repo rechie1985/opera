@@ -39,6 +39,7 @@ function saveDocument(info) {
     } else {
         console.debug('saveToServer');
         Wiz.remote.autoLogin(Wiz.remote.postDocument, info);
+        opera.extension.broadcastMessage({'name': 'clipResult', 'info': info, 'status': 'sync'});
         // Wiz.remote.postDocument(info);
     }
 }

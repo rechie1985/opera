@@ -28,6 +28,7 @@
 
 		<script type="text/javascript" src="content/libs/common/Opera/Popup/PopupView.js"></script>
 		<script type="text/javascript" src="content/libs/common/Opera/Popup/LoginControl.js"></script>
+		<script type="text/javascript" src="content/libs/common/Opera/Popup/ClipResult.js"></script>
 		<script type="text/javascript" src="content/libs/common/Opera/Popup/ClipPageControl.js"></script>
 
 		<script type="text/javascript" src="content/libs/entity/popupEntity.js"></script>
@@ -137,6 +138,32 @@
 							<option id="url"></option>
 							<option id="native"></option>
 						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id='clip_result' style="display: none;">
+			<div class='main'>
+				<div id="status">
+					<div id="clippingIcon" class="notificationIcon" style="display: none;">
+						<img src="content/style/img/scissors.png"/>
+					</div>
+					<div id="activeIcon" class="notificationIcon" style="display: none;">
+						<img src="content/style/img/sync.png"/>
+					</div>
+					<div id="successIcon" class="notificationIcon" style="display: none;">
+						<img src="content/style/img/check.png"/>
+					</div>
+					<div id="errorIcon" class="notificationIcon" style="display: none;">
+						<img src="content/style/img/warning.png"/>
+					</div>
+					<div id="notificationMessage" class="notificationMessage">
+						<div id="notificationHeadline" class="notificationHeadline"></div>
+						<div id="notificationDetails" class="notificationDetails"></div>
+						<div id="errorActions" style="display: none;">
+							<br />
+							<span id="retryClip" class="fakeLink"></span>
+						</div>
 					</div>
 				</div>
 			</div>
