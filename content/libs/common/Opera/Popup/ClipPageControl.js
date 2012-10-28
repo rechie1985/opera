@@ -20,6 +20,10 @@ function ClipPageControl(bgProcess) {
 		$('#comment-info').bind('focus', resizeCommentHeight);
 		$('#wiz_clip_detail').show(initClipPageInfo);
 		$('#category_info').bind('click', changeCategoryLoadingStatus);
+		$('#submit_button').click(function () {
+			console.log('submit_button clicked');
+			$('#submit-type').click();
+		});
 		initNativeDiv();
 	}
 
