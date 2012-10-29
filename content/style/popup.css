@@ -301,9 +301,8 @@ body.popup {
 #status {
   margin: 6px;
   padding: 6px;
-  background-color: #A1D5F3;
+  background-color: #F5F6F7;
   -webkit-border-radius: 4px;
-  border: 1px inset #444;
   font-size: 12px;
   line-height: 18px;
   /* See comment in #relatedNotesHeader for explanation of the following line. */
